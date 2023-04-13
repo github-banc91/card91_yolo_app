@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:yolo/data/local/shared_pref_helper.dart';
 import 'package:yolo/route_helpers.dart';
-import 'package:yolo/screens/authentication/splash_screen.dart';
+import 'package:yolo/screens/authentication/sign_in/sign_in_mpin_fingerprint_screen.dart';
 import 'package:yolo/screens/dashboard/dashboard_screen.dart';
 
 void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   await Prefs.init();
 
   runApp(
@@ -16,7 +20,7 @@ void main() async {
   );
 }
 
-GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+// GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -28,7 +32,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    // FlutterNativeSplash.remove();
+    FlutterNativeSplash.remove();
     super.initState();
   }
 
@@ -36,11 +40,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      navigatorKey: navigatorKey,
+      // navigatorKey: navigatorKey,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        bottomSheetTheme:
-            const BottomSheetThemeData(backgroundColor: Colors.transparent),
+        primarySwatch: Colors.red,
+        bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Colors.transparent,
+        ),
+        fontFamily: 'RedHat',
       ),
       initialRoute: initialRoute(),
       routes: RouteHelper().createRoutes(),
@@ -51,7 +57,7 @@ class _MyAppState extends State<MyApp> {
     if (Prefs.isLoggedIn.get()) {
       return DashboardScreen.route;
     } else {
-      return SplashScreen.route;
+      return SignInMpinFingerprintScreen.route;
     }
   }
 }

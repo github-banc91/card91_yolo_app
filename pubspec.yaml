@@ -18,6 +18,7 @@ dependencies:
   flutter_svg: ^1.1.6
   http: ^0.13.5
   fluttertoast: ^8.0.9
+  flutter_native_splash: ^2.2.11
 
 
 dev_dependencies:
@@ -34,15 +35,25 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/fonts/
 
-#  fonts:
-#    - family: Gilroy
-#      fonts:
-#        - asset: assets/fonts/Gilroy-Regular.ttf
-#          weight: 400
-#        - asset: assets/fonts/Gilroy-Medium.ttf
-#          weight: 500
-#        - asset: assets/fonts/Gilroy-SemiBold.ttf
-#          weight: 600
-#        - asset: assets/fonts/Gilroy-Bold.ttf
-#          weight: 700
+  fonts:
+    - family: RedHat
+      fonts:
+        - asset: assets/fonts/RedHatText-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/RedHatText-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/RedHatText-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/RedHatText-Bold.ttf
+          weight: 700
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+

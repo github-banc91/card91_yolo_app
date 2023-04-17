@@ -9,7 +9,9 @@ class WelcomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Welcome back',
-      style: RedHat.bold(AppColors.appTheme).s32,
+      style: RedHat.bold(AppColors.appTheme).s32.copyWith(
+            fontWeight: FontWeight.w800,
+          ),
     );
   }
 }

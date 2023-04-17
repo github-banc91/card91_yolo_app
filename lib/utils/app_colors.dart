@@ -6,7 +6,7 @@ class AppColors {
   static Color greyBtnColor = const Color(0xffE7E9EB);
   static Color blackFont = const Color(0xff1A1A1A);
   static Color greyFont = const Color(0xff525252);
-  static Color greyCard = Colors.grey.shade400;
+  static Color greyCard = const Color(0xffD9D9D9);
   static Color greyTextFormField = const Color(0xffE7E9EB);
   static Color greyButton = const Color(0xffE7E9EB);
   static Color blueColor = const Color(0xff2955A0);

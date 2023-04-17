@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:yolo/utils/typography.dart';
 
-class LogoWidget extends StatelessWidget {
-  const LogoWidget({Key? key}) : super(key: key);
+class TitleBiometric extends StatelessWidget {
+  const TitleBiometric({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      'YOLO',
-      style: RedHat.extraBold().s24,
+      'Allow Touch Id',
+      style: Poppins.semiBold().s24,
     );
   }
 }

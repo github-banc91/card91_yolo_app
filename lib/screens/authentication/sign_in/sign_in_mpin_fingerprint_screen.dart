@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/common_card_view.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/fingerprint_login_option.dart';
+import 'package:yolo/screens/authentication/sign_in/sign_in_widget/forgot_mpin_widget.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/login_mpin_text.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/login_with_otp_text.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/logo_widget.dart';
+import 'package:yolo/screens/authentication/sign_in/sign_in_widget/mpin_text_field.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/proceed_button.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/welcome_widget.dart';
 import 'package:yolo/utils/app_colors.dart';
@@ -25,6 +27,7 @@ class _SignInMpinFingerprintScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.appTheme,
+      resizeToAvoidBottomInset: false,
       body: Stack(
         alignment: Alignment.bottomRight,
         children: [
@@ -33,16 +36,21 @@ class _SignInMpinFingerprintScreenState
               children: [
                 getSize(height: 15),
                 const LogoWidget(),
-                getSize(height: 35),
+                getSize(height: 50),
                 const WelcomeWidget(),
-                getSize(height: 20),
+                getSize(height: 25),
                 const LoginWithMpin(),
-                getSize(height: 20),
+                getSize(height: 45),
+                const MPINTextField(),
+                getSize(height: 25),
+                const ForgotMPINWidget(),
+                const Spacer(),
                 const ProceedButton(),
                 getSize(height: 20),
                 const LoginWithOtpText(),
                 getSize(height: 20),
-                const FingerPrintLoginOption()
+                const FingerPrintLoginOption(),
+                getSize(height: 20),
               ],
             ),
           ),

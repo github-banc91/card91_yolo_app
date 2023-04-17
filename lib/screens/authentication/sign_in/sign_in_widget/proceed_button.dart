@@ -19,7 +19,7 @@ class ProceedButton extends StatelessWidget {
       alignment: Alignment.center,
       child: Text(
         'Proceed',
-        style: RedHat.bold(AppColors.whiteColor).s18,
+        style: RedHat.bold(AppColors.whiteColor).s20,
       ),
     );
   }

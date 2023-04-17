@@ -7,8 +7,8 @@ class LoginWithOtpText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, SignInMobileScreen.route),
+    return TextButton(
+      onPressed: () => Navigator.pushNamed(context, SignInMobileScreen.route),
       child: Text(
         'Login with OTP',
         style: Poppins.regular().s14,

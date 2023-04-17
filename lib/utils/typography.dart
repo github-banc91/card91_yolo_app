@@ -67,6 +67,14 @@ class RedHat extends Font {
     );
   }
 
+  RedHat.extraBold([final Color? color]) {
+    _textStyle = _textStyle.copyWith(
+      fontFamily: 'RedHat',
+      fontWeight: FontWeight.w800,
+      color: color ?? Colors.black,
+    );
+  }
+
   RedHat.boldUnderline([final Color? color]) {
     _textStyle = _textStyle.copyWith(
       fontFamily: 'RedHat',

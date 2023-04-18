@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yolo/screens/authentication/add_referral/add_referral_screen.dart';
 import 'package:yolo/screens/authentication/sign_up/sign_up_widgets/image_biometric.dart';
 import 'package:yolo/screens/authentication/sign_up/sign_up_widgets/submit_fingerprint_button.dart';
 import 'package:yolo/screens/authentication/sign_up/sign_up_widgets/subtitle_biometric.dart';
@@ -50,6 +51,11 @@ class _AddFingerPrintScreenState extends State<AddFingerPrintScreen> {
   }
 
   Widget laterBtn() => GestureDetector(
+        onTap: () => Navigator.pushNamedAndRemoveUntil(
+          context,
+          AddReferralScreen.route,
+          (route) => false,
+        ),
         child: Text(
           'Later',
           style: Poppins.semiBold().s18,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yolo/screens/authentication/add_referral/add_referral_screen.dart';
 import 'package:yolo/screens/authentication/auth_view_model.dart';
 import 'package:yolo/screens/authentication/sign_in/otp_verification_screen.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_mobile_screen.dart';
@@ -50,6 +51,10 @@ class RouteHelper {
       AddFingerPrintScreen.route: (_) => ChangeNotifierProvider(
             create: (_) => authRequestViewModel,
             child: const AddFingerPrintScreen(),
+          ),
+      AddReferralScreen.route: (_) => ChangeNotifierProvider(
+            create: (_) => authRequestViewModel,
+            child: const AddReferralScreen(),
           ),
       DashboardScreen.route: (_) => ChangeNotifierProvider(
             create: (_) => dashboardViewModel,

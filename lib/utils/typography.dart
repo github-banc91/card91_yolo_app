@@ -109,4 +109,11 @@ class Poppins extends Font {
       color: color ?? Colors.black,
     );
   }
+  Poppins.bold([final Color? color]) {
+    _textStyle = _textStyle.copyWith(
+      fontFamily: 'Poppins-SemiBold',
+      fontWeight: FontWeight.bold,
+      color: color ?? Colors.black,
+    );
+  }
 }

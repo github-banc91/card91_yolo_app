@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yolo/utils/app_colors.dart';
 
 class DashboardScreen extends StatefulWidget {
   static const String route = "DashboardScreen";
@@ -12,6 +13,13 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: AppColors.whiteBgColor,
+      appBar: AppBar(
+        backgroundColor: AppColors.whiteBgColor,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+      ),
+    );
   }
 }

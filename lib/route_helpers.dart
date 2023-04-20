@@ -11,6 +11,8 @@ import 'package:yolo/screens/authentication/sign_up/sign_up_dob_screen.dart';
 import 'package:yolo/screens/authentication/sign_up/sign_up_email_screen.dart';
 import 'package:yolo/screens/authentication/sign_up/sign_up_name_screen.dart';
 import 'package:yolo/screens/dashboard/dashboard_screen.dart';
+import 'package:yolo/screens/home/home_screen.dart';
+import 'package:yolo/screens/home/home_view_model.dart';
 
 class RouteHelper {
   Map<String, WidgetBuilder> createRoutes() {
@@ -59,6 +61,13 @@ class RouteHelper {
       DashboardScreen.route: (_) => ChangeNotifierProvider(
             create: (_) => dashboardViewModel,
             child: const DashboardScreen(),
+          ),
+      HomeScreen.route: (_) => MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (_) => HomeViewModel()),
+              ChangeNotifierProvider(create: (_) => dashboardViewModel),
+            ],
+            child: const HomeScreen(),
           ),
     };
   }

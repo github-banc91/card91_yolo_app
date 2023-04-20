@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yolo/utils/app_colors.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:yolo/screens/home/home_screen.dart';
+import 'package:yolo/utils/app_colors.dart';
 
 class DashboardScreen extends StatefulWidget {
   static const String route = "DashboardScreen";
@@ -14,42 +15,21 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Likes',
-      style: optionStyle,
-    ),
-    Text(
-      'Search',
-      style: optionStyle,
-    ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),Text(
-      'Profile',
-      style: optionStyle,
-    ),
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 20,
-        title: const Text('GoogleNavBar'),
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: Container(
-        margin: const EdgeInsets.fromLTRB(15,0,15,20),
+        margin: const EdgeInsets.fromLTRB(15, 0, 15, 20),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
@@ -62,15 +42,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 15),
             child: GNav(
               rippleColor: Colors.white,
               hoverColor: Colors.white,
               gap: 8,
               activeColor: AppColors.whiteColor,
               iconSize: 22,
-              padding:const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              duration:const Duration(milliseconds: 400),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              duration: const Duration(milliseconds: 400),
               tabBackgroundColor: AppColors.blackFont,
               color: AppColors.blackFont,
               tabs: const [

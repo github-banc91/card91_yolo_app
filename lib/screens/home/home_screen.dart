@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yolo/screens/home/home_widgets/deals_of_day.dart';
+import 'package:yolo/screens/home/home_widgets/earn_coin_order_phy_card.dart';
 import 'package:yolo/screens/home/home_widgets/home_options_widget.dart';
+import 'package:yolo/screens/home/home_widgets/recommendation_widget.dart';
+import 'package:yolo/screens/home/home_widgets/sponsered_widget.dart';
 import 'package:yolo/screens/home/home_widgets/top_card.dart';
 import 'package:yolo/utils/common_widgets.dart';
 
@@ -25,6 +29,14 @@ class _HomeScreenState extends State<HomeScreen> {
             const TopCard(),
             getSize(height: 20),
             const HomeOptionsWidget(),
+            getSize(height: 15),
+            const EarnCoinAndOrderPhyCard(),
+            getSize(height: 20),
+            const RecommendationWidget(),
+            getSize(height: 20),
+            const DealsOfDay(),
+            getSize(height: 20),
+            const SponsoredWidget(),
           ],
         ),
       ),

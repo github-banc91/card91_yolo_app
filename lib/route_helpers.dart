@@ -13,6 +13,7 @@ import 'package:yolo/screens/authentication/sign_up/sign_up_name_screen.dart';
 import 'package:yolo/screens/dashboard/dashboard_screen.dart';
 import 'package:yolo/screens/home/home_screen.dart';
 import 'package:yolo/screens/home/home_view_model.dart';
+import 'package:yolo/screens/scan_and_pay/scan_and_pay.dart';
 
 class RouteHelper {
   Map<String, WidgetBuilder> createRoutes() {
@@ -61,6 +62,10 @@ class RouteHelper {
       DashboardScreen.route: (_) => ChangeNotifierProvider(
             create: (_) => dashboardViewModel,
             child: const DashboardScreen(),
+          ),
+      ScanAndPay.route: (_) => ChangeNotifierProvider(
+            create: (_) => dashboardViewModel,
+            child: const ScanAndPay(),
           ),
       HomeScreen.route: (_) => MultiProvider(
             providers: [

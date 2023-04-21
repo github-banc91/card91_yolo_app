@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:yolo/screens/scan_and_pay/scan_and_pay.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 
@@ -11,7 +12,9 @@ class HomeOptionsWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        commonContainer('assets/icons/scan and pay.svg', () {}),
+        commonContainer('assets/icons/scan and pay.svg', () {
+          Navigator.pushNamed(context, ScanAndPay.route);
+        }),
         getSize(width: 25),
         commonContainer('assets/icons/my qr.svg', () {}),
         getSize(width: 25),

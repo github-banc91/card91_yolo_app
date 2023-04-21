@@ -30,7 +30,10 @@ class TopCard extends StatelessWidget {
               CircleAvatar(
                   backgroundColor: AppColors.whiteColor,
                   child: IconButton(
-                      icon: Icon(Icons.menu),
+                      icon: Icon(
+                        Icons.menu,
+                        color: AppColors.blackFont,
+                      ),
                       onPressed: () {
                         showGeneralDialog(
                           context: context,
@@ -74,7 +77,8 @@ class TopCard extends StatelessWidget {
                                                         AppColors.blackFont)
                                                     .s14,
                                               ),
-                                              CircleAvatar(
+                                              const CircleAvatar(
+                                                minRadius: 35,
                                                 backgroundImage: NetworkImage(
                                                   'https://picsum.photos/250?image=32',
                                                 ),
@@ -114,37 +118,37 @@ class TopCard extends StatelessWidget {
                                           commonTile(
                                             context,
                                             'Refer',
-                                            'assets/icons/refer.svg',
+                                            'assets/icons/refer icon.svg',
                                             null,
                                           ),
                                           commonTile(
                                             context,
                                             'My qr code',
-                                            'assets/icons/refer.svg',
+                                            'assets/icons/my qr code.svg',
                                             null,
                                           ),
                                           commonTile(
                                             context,
                                             'Yolo wallet',
-                                            'assets/icons/refer.svg',
+                                            'assets/icons/yolo wallet.svg',
                                             null,
                                           ),
                                           commonTile(
                                             context,
                                             'Transaction history',
-                                            'assets/icons/refer.svg',
+                                            'assets/icons/trans his.svg',
                                             null,
                                           ),
                                           commonTile(
                                             context,
                                             'App settings',
-                                            'assets/icons/refer.svg',
+                                            'assets/icons/setting.svg',
                                             null,
                                           ),
                                           commonTile(
                                             context,
                                             'Logout',
-                                            'assets/icons/refer.svg',
+                                            'assets/icons/logout.svg',
                                             null,
                                           ),
                                         ],

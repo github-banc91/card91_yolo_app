@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yolo/screens/deals/all_deals_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/typography.dart';
 
@@ -10,9 +11,17 @@ class DealsOfDay extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Deals of the day',
-          style: Poppins.bold(AppColors.blackFont).s20,
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              AllDealsScreen.route,
+            );
+          },
+          child: Text(
+            'Deals of the day',
+            style: Poppins.bold(AppColors.blackFont).s20,
+          ),
         ),
         // getSize(height: 20),
         Image.asset('assets/images/nyka deal.png'),

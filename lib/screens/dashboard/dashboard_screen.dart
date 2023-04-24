@@ -29,7 +29,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: Container(
-        margin: const EdgeInsets.fromLTRB(15, 0, 15, 20),
+        margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),

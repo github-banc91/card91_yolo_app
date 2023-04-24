@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yolo/screens/scan_and_pay/scan_and_pay.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
+import 'package:yolo/utils/typography.dart';
 
 class HomeOptionsWidget extends StatelessWidget {
   const HomeOptionsWidget({Key? key}) : super(key: key);
@@ -12,36 +13,50 @@ class HomeOptionsWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        commonContainer('assets/icons/scan and pay.svg', () {
-          Navigator.pushNamed(context, ScanAndPay.route);
-        }),
+        commonContainer(
+          'Scan & Pay',
+          'assets/icons/scan and pay.svg',
+          () {
+            Navigator.pushNamed(context, ScanAndPay.route);
+          },
+        ),
         getSize(width: 25),
-        commonContainer('assets/icons/my qr.svg', () {}),
+        commonContainer('My Qr', 'assets/icons/my qr.svg', () {}),
         getSize(width: 25),
-        commonContainer('assets/icons/transfer his.svg', () {}),
+        commonContainer(
+            'Transaction\nHistory', 'assets/icons/transfer his.svg', () {}),
         getSize(width: 25),
-        commonContainer('assets/icons/refer.svg', () {}),
+        commonContainer('Refer', 'assets/icons/refer.svg', () {}),
       ],
     );
   }
 
-  Widget commonContainer(image, onTap) {
+  Widget commonContainer(title, image, onTap) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: AppColors.greyCard,
-            width: 2,
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: AppColors.greyCard,
+                width: 3,
+              ),
+              shape: BoxShape.circle,
+              color: AppColors.greyTextFormField,
+            ),
+            padding: const EdgeInsets.all(12),
+            child: SvgPicture.asset(
+              image,
+              height: 35,
+            ),
           ),
-          shape: BoxShape.circle,
-          color: AppColors.greyTextFormField,
-        ),
-        padding: const EdgeInsets.all(12),
-        child: SvgPicture.asset(
-          image,
-          height: 35,
-        ),
+          getSize(height: 10),
+          Text(
+            title,
+            style: Poppins.bold(AppColors.blackFont).s14,
+          ),
+        ],
       ),
     );
   }

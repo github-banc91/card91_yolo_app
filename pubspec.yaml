@@ -22,6 +22,7 @@ dependencies:
   local_auth: ^2.1.6
   google_nav_bar: ^5.0.6
   qr_code_scanner: ^1.0.1
+  sliding_up_panel: ^2.0.0+1
 
 
 dev_dependencies:

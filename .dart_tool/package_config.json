@@ -380,6 +380,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "sliding_up_panel",
+      "rootUri": "file:///Users/rupeshgour/.pub-cache/hosted/pub.dev/sliding_up_panel-2.0.0+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "source_span",
       "rootUri": "file:///Users/rupeshgour/.pub-cache/hosted/pub.dev/source_span-1.9.1",
       "packageUri": "lib/",
@@ -464,7 +470,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-04-24T07:53:12.570057Z",
+  "generated": "2023-04-24T16:35:15.724642Z",
   "generator": "pub",
   "generatorVersion": "2.19.2"
 }

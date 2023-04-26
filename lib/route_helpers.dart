@@ -15,6 +15,7 @@ import 'package:yolo/screens/deals/all_deals_screen.dart';
 import 'package:yolo/screens/deals/view_delas_detail_screen.dart';
 import 'package:yolo/screens/home/home_screen.dart';
 import 'package:yolo/screens/home/home_view_model.dart';
+import 'package:yolo/screens/refer/refer_a_user_screen.dart';
 import 'package:yolo/screens/scan_and_pay/scan_and_pay.dart';
 
 class RouteHelper {
@@ -87,6 +88,12 @@ class RouteHelper {
               ChangeNotifierProvider(create: (_) => HomeViewModel()),
             ],
             child: const ViewDealsDetailScreen(),
+          ),
+      ReferUserScreen.route: (_) => MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (_) => HomeViewModel()),
+            ],
+            child: const ReferUserScreen(),
           ),
     };
   }

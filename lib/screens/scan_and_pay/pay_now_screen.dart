@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yolo/screens/scan_and_pay/mpin_for_pay_screen.dart';
 import 'package:yolo/screens/scan_and_pay/scan_and_pay_widgets/user_info_widget.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
@@ -91,7 +92,7 @@ class _PayNowScreenState extends State<PayNowScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'RuPay from',
+            'Pay from',
             style: Poppins.medium(AppColors.greyFont).s15,
           ),
           ListTile(
@@ -141,9 +142,17 @@ class _PayNowScreenState extends State<PayNowScreen> {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
-                          child: Text(
-                            'Use MPIN',
-                            style: Poppins.medium().s14,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                MPINForPayScreen.route,
+                              );
+                            },
+                            child: Text(
+                              'Use MPIN',
+                              style: Poppins.medium().s14,
+                            ),
                           ),
                         ),
                       ),

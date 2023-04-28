@@ -15,8 +15,8 @@ class EmailSubmitButton extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerRight,
         child: Container(
-          height: 30,
-          width: 30,
+          height: 35,
+          width: 35,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: AppColors.blackFont,

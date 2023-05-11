@@ -2,7 +2,7 @@ class Endpoints {
   Endpoints._();
 
   //base url
-  static const baseUrl = 'https://';
+  static const baseUrl = 'http://ginnie-getyolo.ap-1.evennode.com/api/';
   static const authority = '';
   static const path = '';
 
@@ -10,4 +10,5 @@ class Endpoints {
   static const getMpinStatusUrl =
       "issuance/v1/cardholders/919870000001/mpin/status";
   static const mpinLoginUrl = "issuance/v1/cardholders/login/mpin";
+  static const sponsorsListUrl = "v1/sponsors/";
 }

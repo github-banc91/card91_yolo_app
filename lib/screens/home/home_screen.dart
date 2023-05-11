@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yolo/screens/dashboard/dashboard_view_model.dart';
 import 'package:yolo/screens/home/home_widgets/deals_of_day.dart';
 import 'package:yolo/screens/home/home_widgets/earn_coin_order_phy_card.dart';
 import 'package:yolo/screens/home/home_widgets/home_options_widget.dart';
@@ -16,6 +18,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<DashboardViewModel>().sponsorsListReq();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -11,7 +11,7 @@ class RequestRepo {
       "mobile": mobile,
     };
     final response = await Networking.post(
-      Endpoints.loginUrl,
+      Endpoints.mpinLoginUrl,
       jsonEncode(body),
     );
 
@@ -25,7 +25,7 @@ class RequestRepo {
   static Future<Response> otpVerifyCall(String otp) async {
     //making the api call
     final response = await Networking.post(
-      Endpoints.verifyOtpUrl,
+      Endpoints.authority,
       jsonEncode({'otp': otp}),
     );
     //parsing json data
@@ -36,9 +36,23 @@ class RequestRepo {
 
     if (loginSucceeded) {
       // SharedPrefHelper.userId = int.parse(data[0]['userId']);
-      SharedPrefHelper.authToken = data[0]['token'];
-      SharedPrefHelper.isLoggedIn = true;
+      // SharedPrefHelper.authToken = data[0]['token'];
+      // SharedPrefHelper.isLoggedIn = true;
     }
+    return Response(loginSucceeded, message, responseJson);
+  }
+
+  static Future<Response> sponsorsListCall() async {
+    //making the api call
+    final response = await Networking.get(
+      Endpoints.sponsorsListUrl,
+    );
+    //parsing json data
+    final responseJson = jsonDecode(response);
+    final bool loginSucceeded = responseJson['status'] == 'true' ? true : false;
+    final String message = responseJson['message'];
+    // final data = responseJson['data'];
+
     return Response(loginSucceeded, message, responseJson);
   }
 }

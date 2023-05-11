@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:yolo/screens/authentication/sign_in/sign_in_mpin_fingerprint_screen.dart';
+import 'package:yolo/screens/refer/refer_a_user_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
@@ -73,9 +75,7 @@ class TopCard extends StatelessWidget {
                                             children: [
                                               Text(
                                                 'Shivansh Agrawal',
-                                                style: Poppins.bold(
-                                                        AppColors.blackFont)
-                                                    .s14,
+                                                style: Poppins.bold().s14,
                                               ),
                                               const CircleAvatar(
                                                 minRadius: 35,
@@ -87,16 +87,12 @@ class TopCard extends StatelessWidget {
                                           ),
                                           Text(
                                             'Minimum KYC',
-                                            style: Poppins.regular(
-                                                    AppColors.blackFont)
-                                                .s14,
+                                            style: Poppins.regular().s14,
                                           ),
                                           getSize(height: 20),
                                           Text(
                                             '08/2022',
-                                            style: Poppins.bold(
-                                                    AppColors.blackFont)
-                                                .s14,
+                                            style: Poppins.bold().s14,
                                           ),
                                           getSize(height: 5),
                                           Row(
@@ -110,8 +106,8 @@ class TopCard extends StatelessWidget {
                                               Text(
                                                 'Joined',
                                                 style: Poppins.regular(
-                                                        AppColors.blackFont)
-                                                    .s14,
+                                                  AppColors.blackFont,
+                                                ).s14,
                                               ),
                                             ],
                                           ),
@@ -119,7 +115,12 @@ class TopCard extends StatelessWidget {
                                             context,
                                             'Refer',
                                             'assets/icons/refer icon.svg',
-                                            null,
+                                            () {
+                                              Navigator.pushNamed(
+                                                context,
+                                                ReferUserScreen.route,
+                                              );
+                                            },
                                           ),
                                           commonTile(
                                             context,
@@ -149,7 +150,14 @@ class TopCard extends StatelessWidget {
                                             context,
                                             'Logout',
                                             'assets/icons/logout.svg',
-                                            null,
+                                            () {
+                                              Navigator.pushNamedAndRemoveUntil(
+                                                context,
+                                                SignInMpinFingerprintScreen
+                                                    .route,
+                                                (route) => false,
+                                              );
+                                            },
                                           ),
                                         ],
                                       ),
@@ -244,7 +252,7 @@ class TopCard extends StatelessWidget {
         title,
         style: Poppins.bold(AppColors.blackFont).s16,
       ),
-      onTap: () => tap,
+      onTap: tap,
     );
   }
 }

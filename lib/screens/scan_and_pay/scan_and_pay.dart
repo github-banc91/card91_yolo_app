@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:yolo/screens/scan_and_pay/user_info_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
@@ -212,20 +213,28 @@ class _ScanAndPayState extends State<ScanAndPay>
                   itemBuilder: (ctx, i) {
                     return Padding(
                       padding: const EdgeInsets.only(right: 20.0),
-                      child: Column(
-                        children: [
-                          CircleAvatar(
-                            maxRadius: 25,
-                            backgroundImage: NetworkImage(
-                              'https://picsum.photos/250?image=2$i',
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            UserInfoScreen.route,
+                          );
+                        },
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              maxRadius: 25,
+                              backgroundImage: NetworkImage(
+                                'https://picsum.photos/250?image=2$i',
+                              ),
                             ),
-                          ),
-                          getSize(height: 10),
-                          Text(
-                            'John dew',
-                            style: Poppins.semiBold(AppColors.blackFont).s14,
-                          ),
-                        ],
+                            getSize(height: 10),
+                            Text(
+                              'John dew',
+                              style: Poppins.semiBold(AppColors.blackFont).s14,
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -414,9 +423,15 @@ class _ScanAndPayState extends State<ScanAndPay>
       scrollDirection: Axis.vertical,
       itemBuilder: (ctx, i) {
         return ListTile(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              UserInfoScreen.route,
+            );
+          },
           leading: CircleAvatar(
             backgroundImage: NetworkImage(
-              'https://picsum.photos/250?image=2$i',
+              'https://i.pravatar.cc/50$i',
             ),
           ),
           title: Text(

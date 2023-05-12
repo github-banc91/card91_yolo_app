@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:yolo/screens/home/home_view_model.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
@@ -13,6 +15,14 @@ class ReferUserScreen extends StatefulWidget {
 }
 
 class _ReferUserScreenState extends State<ReferUserScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<HomeViewModel>().refersGet();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

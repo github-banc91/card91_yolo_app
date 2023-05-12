@@ -116,6 +116,7 @@ class TopCard extends StatelessWidget {
                                             'Refer',
                                             'assets/icons/refer icon.svg',
                                             () {
+                                              Navigator.pop(context);
                                               Navigator.pushNamed(
                                                 context,
                                                 ReferUserScreen.route,

@@ -66,10 +66,10 @@ class RouteHelper {
             create: (_) => authRequestViewModel,
             child: const AddReferralScreen(),
           ),
-      DashboardScreen.route: (_) => ChangeNotifierProvider(
-            create: (_) => dashboardViewModel,
-            child: const DashboardScreen(),
-          ),
+      // DashboardScreen.route: (_) => ChangeNotifierProvider(
+      //       create: (_) => dashboardViewModel,
+      //       child: const DashboardScreen(),
+      //     ),
       ScanAndPay.route: (_) => ChangeNotifierProvider(
             create: (_) => dashboardViewModel,
             child: const ScanAndPay(),
@@ -80,6 +80,13 @@ class RouteHelper {
               ChangeNotifierProvider(create: (_) => dashboardViewModel),
             ],
             child: const HomeScreen(),
+          ),
+      DashboardScreen.route: (_) => MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (_) => HomeViewModel()),
+              ChangeNotifierProvider(create: (_) => dashboardViewModel),
+            ],
+            child: const DashboardScreen(),
           ),
       AllDealsScreen.route: (_) => MultiProvider(
             providers: [

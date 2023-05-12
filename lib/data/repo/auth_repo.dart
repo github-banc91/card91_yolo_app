@@ -1,11 +1,12 @@
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
 import 'package:yolo/data/remote/utils/endpoints.dart';
 import 'package:yolo/data/remote/utils/networking.dart';
 import 'package:yolo/data/repo/response_data.dart';
 
 class RequestRepo {
-  static Future<Response> loginCall(String mobile) async {
+  static Future loginCall(String mobile) async {
     //making the api call
     Map<String, String> body = {
       "mobile": mobile,
@@ -19,17 +20,17 @@ class RequestRepo {
     final bool loginSucceeded = responseJson['status'] == 'true' ? true : false;
     final String message = responseJson['message'];
 
-    return Response(loginSucceeded, message, responseJson);
+    return Response(response.status, responseJson);
   }
 
   static Future<Response> otpVerifyCall(String otp) async {
     //making the api call
-    final response = await Networking.post(
+    final http.Response response = await Networking.post(
       Endpoints.authority,
       jsonEncode({'otp': otp}),
     );
     //parsing json data
-    final responseJson = jsonDecode(response);
+    final responseJson = jsonDecode(response.body);
     final bool loginSucceeded = responseJson['status'] == 'true' ? true : false;
     final String message = responseJson['message'];
     final data = responseJson['data'];
@@ -39,20 +40,28 @@ class RequestRepo {
       // SharedPrefHelper.authToken = data[0]['token'];
       // SharedPrefHelper.isLoggedIn = true;
     }
-    return Response(loginSucceeded, message, responseJson);
+    return Response(response.statusCode, responseJson);
   }
 
   static Future<Response> sponsorsListCall() async {
     //making the api call
-    final response = await Networking.get(
+    final http.Response response = await Networking.get(
       Endpoints.sponsorsListUrl,
     );
-    //parsing json data
-    final responseJson = jsonDecode(response);
-    final bool loginSucceeded = responseJson['status'] == 'true' ? true : false;
-    final String message = responseJson['message'];
-    // final data = responseJson['data'];
 
-    return Response(loginSucceeded, message, responseJson);
+    //parsing json data
+    final responseJson = jsonDecode(response.body);
+    return Response(response.statusCode, responseJson);
+  }
+
+  static Future<Response> refersCall() async {
+    //making the api call
+    final http.Response response = await Networking.get(
+      Endpoints.refersGetUrl,
+    );
+
+    //parsing json data
+    final responseJson = jsonDecode(response.body);
+    return Response(response.statusCode, responseJson);
   }
 }

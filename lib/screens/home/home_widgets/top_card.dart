@@ -40,7 +40,7 @@ class TopCard extends StatelessWidget {
                         showGeneralDialog(
                           context: context,
                           barrierDismissible: true,
-                          transitionDuration: Duration(milliseconds: 500),
+                          transitionDuration: Duration(milliseconds: 300),
                           barrierLabel:
                               MaterialLocalizations.of(context).dialogLabel,
                           barrierColor: Colors.black.withOpacity(0.5),
@@ -212,22 +212,22 @@ class TopCard extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 150,
-                height: 180,
+                width: 120,
+                height: 160,
                 child: Stack(
                   children: [
                     Positioned(
                       top: 0,
                       right: 0,
                       child: Image.asset(
-                        'assets/images/Group 250 (1) 2.png',
+                        'assets/images/cardd.png',
                       ),
                     ),
                     Positioned(
                       bottom: 0,
                       left: 0,
                       child:
-                          Image.asset('assets/images/Whelton City (1) 3.png'),
+                          Image.asset('assets/images/cardy.png'),
                     ),
                   ],
                 ),

@@ -72,6 +72,7 @@ class _SignInMpinFingerprintScreenState
   // or just display a text that will tell us that we are authenticated
   Future<void> _authenticate() async {
     bool authenticated = false;
+    print(authenticated);
     try {
       authenticated = await auth.authenticate(
         localizedReason: "Login using your Biometric Credential",
@@ -87,7 +88,7 @@ class _SignInMpinFingerprintScreenState
 
     setState(() {
       authorized =
-          authenticated ? "Autherized success" : "Failed to authenticate";
+          authenticated ? "Authorized success" : "Failed to authenticate";
     });
 
     showToast(
@@ -131,14 +132,20 @@ class _SignInMpinFingerprintScreenState
                 const MPINTextField(),
                 getSize(height: 25),
                 const ForgotMPINWidget(),
-                getSize(height: MediaQuery.of(context).size.height * 0.1),
+                getSize(height: 25),
+                //getSize(height: MediaQuery.of(context).size.height * 0.1),
                 const ProceedButton(),
                 getSize(height: 20),
                 const LoginWithOtpText(),
                 getSize(height: 20),
-                GestureDetector(
-                  onTap: _authenticate,
-                  child: const FingerPrintLoginOption(),
+                InkWell(
+                  onTap: (){
+                    print("hello moto");
+                  },
+                  child: Container(
+                    height: 40,
+                    child: const FingerPrintLoginOption(),
+                  ),
                 ),
                 getSize(height: 20),
               ],

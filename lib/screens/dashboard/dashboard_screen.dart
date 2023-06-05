@@ -62,10 +62,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   icon: Icons.wallet,
                   text: 'Likes',
                 ),
-                GButton(
-                  icon: Icons.share,
-                  text: 'Search',
-                ),
+                // GButton(
+                //   icon: Icons.share,
+                //   text: 'Search',
+                // ),
                 GButton(
                   icon: Icons.people_alt_outlined,
                   text: 'Search',

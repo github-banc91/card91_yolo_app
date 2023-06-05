@@ -20,12 +20,12 @@ class HomeOptionsWidget extends StatelessWidget {
             Navigator.pushNamed(context, ScanAndPay.route);
           },
         ),
-        getSize(width: 25),
+        getSize(width: 20),
         commonContainer('My Qr', 'assets/icons/my qr.svg', () {}),
-        getSize(width: 25),
+        getSize(width: 20),
         commonContainer(
-            'Transaction\nHistory', 'assets/icons/transfer his.svg', () {}),
-        getSize(width: 25),
+            'Transaction', 'assets/icons/transfer his.svg', () {}),
+        getSize(width: 20),
         commonContainer('Refer', 'assets/icons/refer.svg', () {}),
       ],
     );
@@ -54,7 +54,7 @@ class HomeOptionsWidget extends StatelessWidget {
           getSize(height: 10),
           Text(
             title,
-            style: Poppins.bold(AppColors.blackFont).s14,
+            style: Poppins.regular(AppColors.blackFont).s12,
           ),
         ],
       ),

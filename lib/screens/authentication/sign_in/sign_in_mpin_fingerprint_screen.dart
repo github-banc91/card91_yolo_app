@@ -140,7 +140,7 @@ class _SignInMpinFingerprintScreenState
                 getSize(height: 20),
                 InkWell(
                   onTap: (){
-                    print("hello moto");
+                    //print("hello moto");
                   },
                   child: Container(
                     height: 40,

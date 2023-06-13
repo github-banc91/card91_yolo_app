@@ -13,7 +13,7 @@ class SponsorsListModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (allSponsors != null) {
       data['allSponsors'] = allSponsors!.map((v) => v.toJson()).toList();
     }
@@ -37,7 +37,7 @@ class AllSponsors {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = sId;
     data['title'] = title;
     data['display_img_url'] = displayImgUrl;

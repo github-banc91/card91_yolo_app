@@ -134,6 +134,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "flutter_riverpod",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/flutter_riverpod-2.3.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_svg",
       "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/flutter_svg-1.1.6",
       "packageUri": "lib/",
@@ -362,6 +368,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "riverpod",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/riverpod-2.3.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "share_plus",
       "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/share_plus-6.3.4",
       "packageUri": "lib/",
@@ -436,6 +448,12 @@
     {
       "name": "stack_trace",
       "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.10.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "state_notifier",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/state_notifier-0.7.2+1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -542,7 +560,8 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-06-12T12:14:45.943859Z",
+  "generated": "2023-06-13T05:36:32.891017Z",
   "generator": "pub",
   "generatorVersion": "2.18.6"
 }
+

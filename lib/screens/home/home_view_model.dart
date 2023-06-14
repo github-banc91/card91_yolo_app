@@ -1,9 +1,11 @@
+import 'package:yolo/data/remote/model/get_referal_code_model.dart';
 import 'package:yolo/data/remote/model/sponsors_list_model.dart';
 import 'package:yolo/data/repo/auth_repo.dart';
 import 'package:yolo/utils/view_model.dart';
 
 class HomeViewModel extends ViewModel {
   List<AllSponsors> sponsors = [];
+  GetReferal? referData;
   void sponsorsListReq() {
     callApi(() async {
       final response = await RequestRepo.sponsorsListCall();
@@ -21,8 +23,10 @@ class HomeViewModel extends ViewModel {
     callApi(() async {
       final response = await RequestRepo.refersCall();
       if (response.status == 200) {
+        var data = GetReferal.fromJson(response.data);
+        referData = data;
         notifyListeners();
-        notifyListeners();
+        // notifyListeners();
       }
     });
   }

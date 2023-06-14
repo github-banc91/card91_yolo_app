@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yolo/screens/deals/view_delas_detail_screen.dart';
+import 'package:yolo/screens/deals/view_deals_detail_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/typography.dart';
 

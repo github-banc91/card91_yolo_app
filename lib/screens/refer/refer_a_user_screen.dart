@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:yolo/data/remote/model/get_referal_code_model.dart';
 import 'package:yolo/screens/home/home_view_model.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
@@ -25,6 +26,7 @@ class _ReferUserScreenState extends State<ReferUserScreen> {
 
   @override
   Widget build(BuildContext context) {
+    GetReferal? referal = context.watch<HomeViewModel>().referData;
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
@@ -81,7 +83,7 @@ class _ReferUserScreenState extends State<ReferUserScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
-                    '4454545',
+                    referal?.referralCode ?? '',
                     style: Poppins.semiBold(
                       const Color(0xff595959),
                     ).s24,

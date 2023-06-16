@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yolo/data/remote/model/account_details_model.dart';
 import 'package:yolo/data/remote/model/log_in_model.dart';
 import 'package:yolo/data/repo/auth_repo.dart';
 import 'package:yolo/screens/authentication/sign_in/otp_verification_screen.dart';
@@ -8,6 +9,7 @@ import 'package:yolo/screens/authentication/sign_up/set_mpin_screen.dart';
 import 'package:yolo/screens/authentication/sign_up/sign_up_dob_screen.dart';
 import 'package:yolo/screens/authentication/sign_up/sign_up_email_screen.dart';
 import 'package:yolo/screens/authentication/sign_up/sign_up_name_screen.dart';
+import 'package:yolo/screens/dashboard/dashboard_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/view_model.dart';
@@ -107,6 +109,23 @@ class AuthViewModel extends ViewModel {
         } else {
           //Make the changes here
         }
+      }
+    });
+  }
+
+  void logInWithMpin(context) {
+    callApi(() async {
+      final response = await RequestRepo.loginWithMpin({
+        "mobile": "91${loginPhoneController.text}",
+        "mpin": loginMPINController.text
+      });
+      print("status code - ${response.status}");
+      if (response.status == 200) {
+        AccountDetails.fromJson(response.data);
+        Navigator.pushNamed(
+          context,
+          DashboardScreen.route,
+        );
       }
     });
   }

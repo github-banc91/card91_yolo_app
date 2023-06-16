@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:yolo/data/remote/utils/endpoints.dart';
 import 'package:yolo/data/remote/utils/networking.dart';
@@ -68,10 +69,21 @@ class RequestRepo {
   static Future<Response> logInWithPhoneNumber(String number) async {
     //making the api call
     final http.Response response = await Networking.get(
-      'https://api.sb.stag.card91.in/issuance/v1/cardholders/$number/mpin/status',
+      'https://api.sb.stag.card91.in/issuance/v1/cardholders/91$number/mpin/status',
     );
 
     //parsing json data
+    final responseJson = jsonDecode(response.body);
+    return Response(response.statusCode, responseJson);
+  }
+
+  static Future<Response> loginWithMpin(Map<String, String> body) async {
+    //making the api call
+    final http.Response response = await Networking.post(
+      "https://api.sb.stag.card91.in/issuance/v1/cardholders/login/mpin",
+      body.toString(),
+    );
+    debugPrint("bodys - ${response.body}");
     final responseJson = jsonDecode(response.body);
     return Response(response.statusCode, responseJson);
   }

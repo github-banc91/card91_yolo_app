@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yolo/screens/dashboard/dashboard_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:yolo/screens/authentication/auth_view_model.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
@@ -11,11 +12,7 @@ class ProceedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          DashboardScreen.route,
-          (route) => false,
-        );
+        context.read<AuthViewModel>().logInWithMpin(context);
       },
       child: Container(
         height: 50,

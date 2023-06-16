@@ -64,4 +64,15 @@ class RequestRepo {
     final responseJson = jsonDecode(response.body);
     return Response(response.statusCode, responseJson);
   }
+
+  static Future<Response> logInWithPhoneNumber(String number) async {
+    //making the api call
+    final http.Response response = await Networking.get(
+      'https://api.sb.stag.card91.in/issuance/v1/cardholders/$number/mpin/status',
+    );
+
+    //parsing json data
+    final responseJson = jsonDecode(response.body);
+    return Response(response.statusCode, responseJson);
+  }
 }

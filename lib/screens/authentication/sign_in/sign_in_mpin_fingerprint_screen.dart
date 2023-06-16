@@ -136,27 +136,24 @@ class _SignInMpinFingerprintScreenState
                 //getSize(height: MediaQuery.of(context).size.height * 0.1),
                 const ProceedButton(),
                 getSize(height: 20),
-                const LoginWithOtpText(),
+                // const LoginWithOtpText(),
                 getSize(height: 20),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     //print("hello moto");
                   },
-                  child: Container(
+                  child: const SizedBox(
                     height: 40,
-                    child: const FingerPrintLoginOption(),
+                    child: FingerPrintLoginOption(),
                   ),
                 ),
                 getSize(height: 20),
               ],
             ),
           ),
-          Container(
-            // color: Colors.blue,
-            child: Image.asset(
-              'assets/images/rocket.png',
-              fit: BoxFit.contain,
-            ),
+          Image.asset(
+            'assets/images/rocket.png',
+            fit: BoxFit.contain,
           ),
         ],
       ),

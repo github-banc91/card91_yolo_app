@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yolo/data/remote/model/log_in_model.dart';
+import 'package:yolo/data/repo/auth_repo.dart';
 import 'package:yolo/screens/authentication/sign_in/otp_verification_screen.dart';
+import 'package:yolo/screens/authentication/sign_in/sign_in_mpin_fingerprint_screen.dart';
 import 'package:yolo/screens/authentication/sign_up/add_fingerprint_screen.dart';
 import 'package:yolo/screens/authentication/sign_up/set_mpin_screen.dart';
 import 'package:yolo/screens/authentication/sign_up/sign_up_dob_screen.dart';
@@ -12,6 +15,7 @@ import 'package:yolo/utils/view_model.dart';
 class AuthViewModel extends ViewModel {
   TextEditingController loginMPINController = TextEditingController();
   TextEditingController loginMobileController = TextEditingController();
+  TextEditingController loginPhoneController = TextEditingController();
   TextEditingController loginOtp1 = TextEditingController();
   TextEditingController loginOtp2 = TextEditingController();
   TextEditingController loginOtp3 = TextEditingController();
@@ -87,6 +91,24 @@ class AuthViewModel extends ViewModel {
     } else {
       showToast('Please enter date of birth', AppColors.redError);
     }
+  }
+
+  void logInWithMobileNumber(context) {
+    callApi(() async {
+      final response =
+          await RequestRepo.logInWithPhoneNumber(loginPhoneController.text);
+      if (response.status == 200) {
+        var data = LogIn.fromJson(response.data);
+        if (data.mpinExists == true) {
+          Navigator.pushNamed(
+            context,
+            SignInMpinFingerprintScreen.route,
+          );
+        } else {
+          //Make the changes here
+        }
+      }
+    });
   }
 
   void setMpin(context) {

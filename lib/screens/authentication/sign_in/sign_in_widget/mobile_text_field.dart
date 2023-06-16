@@ -12,7 +12,7 @@ class MobileTextField extends StatelessWidget {
       padding: const EdgeInsets.only(left: 30.0),
       child: TextFormField(
         keyboardType: TextInputType.number,
-        controller: context.read<AuthViewModel>().loginMobileController,
+        controller: context.read<AuthViewModel>().loginPhoneController,
         style: Poppins.semiBold().s20,
         decoration: InputDecoration(
           hintText: '',

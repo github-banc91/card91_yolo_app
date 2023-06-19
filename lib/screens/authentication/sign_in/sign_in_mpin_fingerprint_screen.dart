@@ -1,31 +1,33 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:yolo/providers/mpin_login_provider.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/common_card_view.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/fingerprint_login_option.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/forgot_mpin_widget.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/login_mpin_text.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/login_with_otp_text.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/logo_widget.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/mpin_text_field.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/proceed_button.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/welcome_widget.dart';
 import 'package:yolo/screens/dashboard/dashboard_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
+import 'package:yolo/utils/network_utils.dart';
+import 'package:yolo/utils/typography.dart';
 
-class SignInMpinFingerprintScreen extends StatefulWidget {
-  static const String route = "SignInMpinFingerprintScreen";
-
-  const SignInMpinFingerprintScreen({Key? key}) : super(key: key);
+class SignInMpinFingerprintScreen extends ConsumerStatefulWidget {
+  const SignInMpinFingerprintScreen({super.key});
 
   @override
-  State<SignInMpinFingerprintScreen> createState() =>
+  ConsumerState<ConsumerStatefulWidget> createState() =>
       _SignInMpinFingerprintScreenState();
 }
 
 class _SignInMpinFingerprintScreenState
-    extends State<SignInMpinFingerprintScreen> {
+    extends ConsumerState<SignInMpinFingerprintScreen> {
+  TextEditingController mpinController = TextEditingController();
   LocalAuthentication auth = LocalAuthentication();
   bool _canCheckBiometric = false;
   List<BiometricType>? _availableBiometric;
@@ -113,6 +115,7 @@ class _SignInMpinFingerprintScreenState
 
   @override
   Widget build(BuildContext context) {
+    final mpinWatch = ref.watch(mpinLoginStatusProvider);
     return Scaffold(
       backgroundColor: AppColors.appTheme,
       resizeToAvoidBottomInset: false,
@@ -126,17 +129,69 @@ class _SignInMpinFingerprintScreenState
                 const LogoWidget(),
                 getSize(height: 50),
                 const WelcomeWidget(),
+                Hive.box('db').get('name') != null
+                    ? getSize(height: 20)
+                    : const SizedBox.shrink(),
+                Text(
+                  '${Hive.box('db').get('name') ?? ''}',
+                  style: Poppins.medium().s24,
+                ),
                 getSize(height: 25),
                 const LoginWithMpin(),
                 getSize(height: 45),
-                const MPINTextField(),
+                TextFormField(
+                  controller: mpinController,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    hintText: 'Enter Your MPIN',
+                    hintStyle: Poppins.medium().s16,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(
+                        color: AppColors.blackFont,
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                ),
                 getSize(height: 25),
                 const ForgotMPINWidget(),
                 getSize(height: 25),
-                //getSize(height: MediaQuery.of(context).size.height * 0.1),
-                const ProceedButton(),
-                getSize(height: 20),
-                // const LoginWithOtpText(),
+                mpinWatch
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.redError,
+                        ),
+                      )
+                    : ElevatedButton(
+                        onPressed: () {
+                          ref.read(mpinLoginStatusProvider.notifier).state =
+                              true;
+                          requestBody = {
+                            "mobile": Hive.box('db').get('phoneNumber'),
+                            "mpin": mpinController.text
+                          };
+                          ref.read(mpinloginProvider).then((value) {
+                            if (value.statusCode == 200) {
+                              Navigator.pushNamed(context, 'DashboardScreen');
+                            }
+                          });
+                        },
+                        child: Container(
+                          height: 50,
+                          width: size(context).width * 0.65,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(80),
+                            // color: AppColors.blackFont,
+                          ),
+                          padding: const EdgeInsets.all(5),
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Proceed',
+                            style: RedHat.bold(AppColors.whiteColor).s20,
+                          ),
+                        ),
+                      ),
                 getSize(height: 20),
                 InkWell(
                   onTap: () {

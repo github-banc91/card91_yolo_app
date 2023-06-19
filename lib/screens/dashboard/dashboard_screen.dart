@@ -5,7 +5,6 @@ import 'package:yolo/utils/app_colors.dart';
 
 class DashboardScreen extends StatefulWidget {
   static const String route = "DashboardScreen";
-
   const DashboardScreen({Key? key}) : super(key: key);
 
   @override

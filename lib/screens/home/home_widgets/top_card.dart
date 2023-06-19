@@ -152,12 +152,12 @@ class TopCard extends StatelessWidget {
                                             'Logout',
                                             'assets/icons/logout.svg',
                                             () {
-                                              Navigator.pushNamedAndRemoveUntil(
-                                                context,
-                                                SignInMpinFingerprintScreen
-                                                    .route,
-                                                (route) => false,
-                                              );
+                                              // Navigator.pushNamedAndRemoveUntil(
+                                              //   context,
+                                              //   SignInMpinFingerprintScreen
+                                              //       .route,
+                                              //   (route) => false,
+                                              // );
                                             },
                                           ),
                                         ],
@@ -226,8 +226,7 @@ class TopCard extends StatelessWidget {
                     Positioned(
                       bottom: 0,
                       left: 0,
-                      child:
-                          Image.asset('assets/images/cardy.png'),
+                      child: Image.asset('assets/images/cardy.png'),
                     ),
                   ],
                 ),

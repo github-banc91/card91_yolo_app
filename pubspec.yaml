@@ -25,6 +25,7 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   share_plus: ^6.3.3
   flutter_riverpod: ^2.3.6
+  hive_flutter: ^1.1.0
 
 
 dev_dependencies:

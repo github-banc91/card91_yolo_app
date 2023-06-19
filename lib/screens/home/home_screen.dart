@@ -49,12 +49,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 getSize(height: 20),
                 const DealsOfDay(),
                 getSize(height: 20),
-                const SponsoredWidget(),
+                // const SponsoredWidget(),
               ],
             ),
           ),
         ),
-        const LoadingIndicatorConsumer<HomeViewModel>()
+        // const LoadingIndicatorConsumer<HomeViewModel>()
       ],
     );
   }

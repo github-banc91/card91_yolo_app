@@ -1,6 +1,5 @@
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
-import 'package:yolo/data/remote/utils/endpoints.dart';
 
 class Networking {
   static Future post(url, body) async {

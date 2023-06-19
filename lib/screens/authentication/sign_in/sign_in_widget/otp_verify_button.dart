@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:yolo/screens/authentication/auth_view_model.dart';
 import 'package:yolo/utils/app_colors.dart';
 
 class OTPVerifyButton extends StatelessWidget {
@@ -9,9 +7,7 @@ class OTPVerifyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        context.read<AuthViewModel>().verifyOtp(context);
-      },
+      onTap: () {},
       child: Container(
         height: 30,
         width: 30,

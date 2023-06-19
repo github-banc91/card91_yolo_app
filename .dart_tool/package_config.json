@@ -170,6 +170,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "hive",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/hive-2.2.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "hive_flutter",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/hive_flutter-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "html",
       "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/html-0.15.3",
       "packageUri": "lib/",
@@ -560,7 +572,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-06-14T11:00:38.001191Z",
+  "generated": "2023-06-19T08:43:47.379001Z",
   "generator": "pub",
   "generatorVersion": "2.18.6"
 }

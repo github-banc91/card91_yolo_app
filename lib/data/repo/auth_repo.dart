@@ -81,7 +81,7 @@ class RequestRepo {
     //making the api call
     final http.Response response = await Networking.post(
       "https://api.sb.stag.card91.in/issuance/v1/cardholders/login/mpin",
-      body.toString(),
+      jsonEncode(body),
     );
     debugPrint("bodys - ${response.body}");
     final responseJson = jsonDecode(response.body);

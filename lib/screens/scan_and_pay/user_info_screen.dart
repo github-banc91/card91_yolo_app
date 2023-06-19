@@ -107,7 +107,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             onTap: () {
               setState(() {
                 isSelect = 1;
-                amount.text = '${int.parse(amount.text ?? '0') + 100}';
+                amount.text = '${int.parse(amount.text) + 100}';
               });
             },
             child: Container(
@@ -134,7 +134,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             onTap: () {
               setState(() {
                 isSelect = 2;
-                amount.text = '${int.parse(amount.text ?? '0') + 200}';
+                amount.text = '${int.parse(amount.text) + 200}';
               });
             },
             child: Container(

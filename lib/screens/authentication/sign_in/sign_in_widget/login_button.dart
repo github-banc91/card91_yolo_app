@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:yolo/screens/authentication/auth_view_model.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
@@ -11,9 +9,7 @@ class LogInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        context.read<AuthViewModel>().logInWithMobileNumber(context);
-      },
+      onTap: () {},
       child: Container(
         height: 50,
         width: size(context).width * 0.65,

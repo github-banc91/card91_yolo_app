@@ -13,9 +13,7 @@ class LoginMobileSubmitButton extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: GestureDetector(
-        onTap: () {
-          context.read<AuthViewModel>().getOtpFun(context);
-        },
+        onTap: () {},
         child: Container(
           height: 50,
           width: size(context).width * 0.4,

@@ -56,6 +56,7 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
                         ),
                       ),
                     ),
+                    maxLength: 10,
                   ),
                 ),
                 getSize(height: 25),
@@ -67,18 +68,29 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
                       )
                     : ElevatedButton(
                         onPressed: () {
-                          ref.read(mobileLoginStatusProvider.notifier).state =
-                              true;
+                          if (phoneNumberController.text.isNotEmpty) {
+                            ref.read(mobileLoginStatusProvider.notifier).state =
+                                true;
 
-                          requestBody = {
-                            'mobile_number': phoneNumberController.text
-                          };
-                          ref.read(mobileloginProvider).then((value) {
-                            if (value['mpinExists'] == true) {
-                              Navigator.pushNamed(
-                                  context, 'SignInMpinFingerprintScreen');
-                            }
-                          });
+                            requestBody = {
+                              'mobile_number': phoneNumberController.text
+                            };
+                            ref.read(mobileloginProvider).then((value) {
+                              if (value['mpinExists'] == true) {
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  'SignInMpinFingerprintScreen',
+                                  (Route<dynamic> route) => true,
+                                );
+                              } else {
+                                showToast(value['message'], AppColors.redError);
+                              }
+                            });
+                          } else {
+                            showToast(
+                                'please enter your registered mobile number',
+                                AppColors.redError);
+                          }
                         },
                         child: Container(
                           height: 50,

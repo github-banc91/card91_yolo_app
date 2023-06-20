@@ -7,9 +7,11 @@ class LoginWithMpin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Login with ${Hive.box('db').get('mobile') ?? ''} MPIN',
-      style: RedHat.regular().s20,
-    );
+    return Hive.box('db').get('mobile') != null
+        ? Text(
+            'Login with ${Hive.box('db').get('mobile') ?? ''}',
+            style: RedHat.regular().s20,
+          )
+        : const SizedBox.shrink();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_mpin_fingerprint_screen.dart';
 import 'package:yolo/screens/refer/refer_a_user_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
@@ -152,12 +153,7 @@ class TopCard extends StatelessWidget {
                                             'Logout',
                                             'assets/icons/logout.svg',
                                             () {
-                                              // Navigator.pushNamedAndRemoveUntil(
-                                              //   context,
-                                              //   SignInMpinFingerprintScreen
-                                              //       .route,
-                                              //   (route) => false,
-                                              // );
+                                              clearCreds(context);
                                             },
                                           ),
                                         ],
@@ -254,5 +250,16 @@ class TopCard extends StatelessWidget {
       ),
       onTap: tap,
     );
+  }
+
+  void clearCreds(BuildContext context) async {
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      'SignInMobileScreen',
+      (route) => false,
+    );
+    await Hive.box('db').delete('phoneNumber');
+    await Hive.box('db').delete('name');
+    await Hive.box('db').delete('mobile');
   }
 }

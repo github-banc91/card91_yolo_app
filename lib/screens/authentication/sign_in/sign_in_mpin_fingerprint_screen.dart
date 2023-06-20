@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -127,7 +129,7 @@ class _SignInMpinFingerprintScreenState
               children: [
                 getSize(height: 15),
                 const LogoWidget(),
-                getSize(height: 50),
+                getSize(height: 40),
                 const WelcomeWidget(),
                 Hive.box('db').get('name') != null
                     ? getSize(height: 20)
@@ -138,7 +140,7 @@ class _SignInMpinFingerprintScreenState
                 ),
                 getSize(height: 25),
                 const LoginWithMpin(),
-                getSize(height: 45),
+                getSize(height: 25),
                 TextFormField(
                   controller: mpinController,
                   textAlign: TextAlign.center,
@@ -153,8 +155,10 @@ class _SignInMpinFingerprintScreenState
                       ),
                     ),
                   ),
+                  style: Poppins.bold().s20,
+                  maxLength: 6,
                 ),
-                getSize(height: 25),
+                getSize(height: 15),
                 const ForgotMPINWidget(),
                 getSize(height: 25),
                 mpinWatch
@@ -165,17 +169,27 @@ class _SignInMpinFingerprintScreenState
                       )
                     : ElevatedButton(
                         onPressed: () {
-                          ref.read(mpinLoginStatusProvider.notifier).state =
-                              true;
-                          requestBody = {
-                            "mobile": Hive.box('db').get('phoneNumber'),
-                            "mpin": mpinController.text
-                          };
-                          ref.read(mpinloginProvider).then((value) {
-                            if (value.statusCode == 200) {
-                              Navigator.pushNamed(context, 'DashboardScreen');
-                            }
-                          });
+                          if (mpinController.text.isNotEmpty) {
+                            ref.read(mpinLoginStatusProvider.notifier).state =
+                                true;
+                            requestBody = {
+                              "mobile": Hive.box('db').get('phoneNumber'),
+                              "mpin": mpinController.text
+                            };
+                            ref.read(mpinloginProvider).then((value) {
+                              Map<String, dynamic> result =
+                                  jsonDecode(value.body);
+                              if (value.statusCode == 200) {
+                                Navigator.pushNamed(context, 'DashboardScreen');
+                              } else {
+                                showToast(
+                                    result['message'], AppColors.redError);
+                              }
+                            });
+                          } else {
+                            showToast('please enter your 6 digit MPIN',
+                                AppColors.redError);
+                          }
                         },
                         child: Container(
                           height: 50,

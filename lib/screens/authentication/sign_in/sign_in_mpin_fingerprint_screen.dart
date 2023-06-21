@@ -32,15 +32,11 @@ class _SignInMpinFingerprintScreenState
     extends ConsumerState<SignInMpinFingerprintScreen> {
   TextEditingController mpinController = TextEditingController();
   LocalAuthentication auth = LocalAuthentication();
+  FlutterSecureStorage storage = const FlutterSecureStorage();
   bool _canCheckBiometric = false;
-  List<BiometricType>? _availableBiometric;
+  bool _isMpinPresent = false;
   String authorized = "Not authorized";
-  final FlutterSecureStorage storage = const FlutterSecureStorage();
-  String? mpin;
 
-  //checking bimetrics
-  //this function will check the sensors and will tell us
-  // if we can use them or not
   Future<void> _checkBiometric() async {
     bool? canCheckBiometric;
     try {
@@ -55,9 +51,6 @@ class _SignInMpinFingerprintScreenState
     });
   }
 
-  //this function will get all the available biometrics inside our device
-  //it will return a list of objects, but for our example it will only
-  //return the fingerprint biometric
   Future<void> _getAvailableBiometrics() async {
     List<BiometricType>? availableBiometric;
     try {
@@ -67,16 +60,19 @@ class _SignInMpinFingerprintScreenState
     }
     if (!mounted) return;
     print('is bio metric avail $availableBiometric');
-
-    setState(() {
-      _availableBiometric = availableBiometric;
-    });
+    setState(() {});
   }
 
-  //this function will open an authentication dialog
-  // and it will check if we are authenticated or not
-  // so we will add the major action here like moving to another activity
-  // or just display a text that will tell us that we are authenticated
+  Future<void> _getMpin() async {
+    final mpin = await storage.read(key: 'mpin');
+
+    if (mpin != null) {
+      setState(() {
+        _isMpinPresent = true;
+      });
+    }
+  }
+
   Future<void> _authenticate() async {
     bool authenticated = false;
     try {
@@ -116,11 +112,33 @@ class _SignInMpinFingerprintScreenState
     }
   }
 
+  void _mpinLogin() {
+    if (mpinController.text.isNotEmpty) {
+      ref.read(mpinLoginStatusProvider.notifier).state = true;
+      requestBody = {
+        "mobile": Hive.box('db').get('phoneNumber'),
+        "mpin": mpinController.text
+      };
+      ref.read(mpinloginProvider).then((value) async {
+        Map<String, dynamic> result = jsonDecode(value.body);
+        if (value.statusCode == 200) {
+          Navigator.pushNamed(context, 'DashboardScreen');
+          await storage.write(key: 'mpin', value: mpinController.text);
+        } else {
+          showToast(result['message'], AppColors.redError);
+        }
+      });
+    } else {
+      showToast('please enter your 6 digit MPIN', AppColors.redError);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _checkBiometric();
     _getAvailableBiometrics();
+    _getMpin();
   }
 
   @override
@@ -177,29 +195,7 @@ class _SignInMpinFingerprintScreenState
                       )
                     : ElevatedButton(
                         onPressed: () {
-                          if (mpinController.text.isNotEmpty) {
-                            ref.read(mpinLoginStatusProvider.notifier).state =
-                                true;
-                            requestBody = {
-                              "mobile": Hive.box('db').get('phoneNumber'),
-                              "mpin": mpinController.text
-                            };
-                            ref.read(mpinloginProvider).then((value) async {
-                              Map<String, dynamic> result =
-                                  jsonDecode(value.body);
-                              if (value.statusCode == 200) {
-                                Navigator.pushNamed(context, 'DashboardScreen');
-                                await storage.write(
-                                    key: 'mpin', value: mpinController.text);
-                              } else {
-                                showToast(
-                                    result['message'], AppColors.redError);
-                              }
-                            });
-                          } else {
-                            showToast('please enter your 6 digit MPIN',
-                                AppColors.redError);
-                          }
+                          _mpinLogin();
                         },
                         child: Container(
                           height: 50,
@@ -219,12 +215,15 @@ class _SignInMpinFingerprintScreenState
                 getSize(height: 20),
                 InkWell(
                   onTap: () async {
-                    print("hello moto");
-                    if (await storage.read(key: 'mpin') == null) {
-                      showToast('please enter your 6 digit MPIN first',
-                          AppColors.redError);
+                    if (_canCheckBiometric) {
+                      if (_isMpinPresent) {
+                        _authenticate();
+                      } else {
+                        showToast('please enter your 6 digit MPIN first',
+                            AppColors.redError);
+                      }
                     } else {
-                      _authenticate();
+                      showToast('No biometrics available', AppColors.redError);
                     }
                   },
                   child: const SizedBox(

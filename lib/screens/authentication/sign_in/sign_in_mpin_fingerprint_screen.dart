@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:yolo/providers/mpin_login_provider.dart';
@@ -34,6 +35,8 @@ class _SignInMpinFingerprintScreenState
   bool _canCheckBiometric = false;
   List<BiometricType>? _availableBiometric;
   String authorized = "Not authorized";
+  final FlutterSecureStorage storage = const FlutterSecureStorage();
+  String? mpin;
 
   //checking bimetrics
   //this function will check the sensors and will tell us
@@ -76,7 +79,6 @@ class _SignInMpinFingerprintScreenState
   // or just display a text that will tell us that we are authenticated
   Future<void> _authenticate() async {
     bool authenticated = false;
-    print(authenticated);
     try {
       authenticated = await auth.authenticate(
         localizedReason: "Login using your Biometric Credential",
@@ -89,22 +91,28 @@ class _SignInMpinFingerprintScreenState
       print(e);
     }
     if (!mounted) return;
-
     setState(() {
       authorized =
           authenticated ? "Authorized success" : "Failed to authenticate";
     });
-
     showToast(
       authorized,
       authenticated ? AppColors.greenColor : AppColors.redError,
     );
     if (authenticated) {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        DashboardScreen.route,
-        (route) => false,
-      );
+      ref.read(mpinLoginStatusProvider.notifier).state = true;
+      requestBody = {
+        "mobile": Hive.box('db').get('phoneNumber'),
+        "mpin": await storage.read(key: 'mpin')
+      };
+      ref.read(mpinloginProvider).then((value) {
+        Map<String, dynamic> result = jsonDecode(value.body);
+        if (value.statusCode == 200) {
+          Navigator.pushNamed(context, 'DashboardScreen');
+        } else {
+          showToast(result['message'], AppColors.redError);
+        }
+      });
     }
   }
 
@@ -176,11 +184,13 @@ class _SignInMpinFingerprintScreenState
                               "mobile": Hive.box('db').get('phoneNumber'),
                               "mpin": mpinController.text
                             };
-                            ref.read(mpinloginProvider).then((value) {
+                            ref.read(mpinloginProvider).then((value) async {
                               Map<String, dynamic> result =
                                   jsonDecode(value.body);
                               if (value.statusCode == 200) {
                                 Navigator.pushNamed(context, 'DashboardScreen');
+                                await storage.write(
+                                    key: 'mpin', value: mpinController.text);
                               } else {
                                 showToast(
                                     result['message'], AppColors.redError);
@@ -208,8 +218,14 @@ class _SignInMpinFingerprintScreenState
                       ),
                 getSize(height: 20),
                 InkWell(
-                  onTap: () {
-                    //print("hello moto");
+                  onTap: () async {
+                    print("hello moto");
+                    if (await storage.read(key: 'mpin') == null) {
+                      showToast('please enter your 6 digit MPIN first',
+                          AppColors.redError);
+                    } else {
+                      _authenticate();
+                    }
                   },
                   child: const SizedBox(
                     height: 40,

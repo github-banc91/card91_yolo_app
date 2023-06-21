@@ -140,6 +140,42 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_secure_storage",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-8.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_linux",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage_linux-1.1.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_macos",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage_macos-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_platform_interface",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage_platform_interface-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_web",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage_web-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_windows",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage_windows-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_svg",
       "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/flutter_svg-1.1.6",
       "packageUri": "lib/",
@@ -231,7 +267,7 @@
     },
     {
       "name": "local_auth_android",
-      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/local_auth_android-1.0.30",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/local_auth_android-1.0.31",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -333,9 +369,9 @@
     },
     {
       "name": "path_provider_windows",
-      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.1.6",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.1.7",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "petitparser",
@@ -399,9 +435,9 @@
     },
     {
       "name": "shared_preferences",
-      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.1.1",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.1.2",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "shared_preferences_android",
@@ -572,7 +608,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-06-19T08:43:47.379001Z",
+  "generated": "2023-06-21T06:56:54.940422Z",
   "generator": "pub",
   "generatorVersion": "2.18.6"
 }

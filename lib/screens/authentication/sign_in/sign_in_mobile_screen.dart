@@ -107,16 +107,16 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
                           ),
                         ),
                       ),
-                getSize(height: 20),
-                InkWell(
-                  onTap: () {
-                    //print("hello moto");
-                  },
-                  child: const SizedBox(
-                    height: 40,
-                    child: FingerPrintLoginOption(),
-                  ),
-                ),
+                // getSize(height: 20),
+                // InkWell(
+                //   onTap: () {
+                //     //print("hello moto");
+                //   },
+                //   child: const SizedBox(
+                //     height: 40,
+                //     child: FingerPrintLoginOption(),
+                //   ),
+                // ),
                 getSize(height: 20),
               ],
             ),

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,7 +13,6 @@ import 'package:yolo/screens/authentication/sign_in/sign_in_widget/forgot_mpin_w
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/login_mpin_text.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/logo_widget.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/welcome_widget.dart';
-import 'package:yolo/screens/dashboard/dashboard_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/network_utils.dart';

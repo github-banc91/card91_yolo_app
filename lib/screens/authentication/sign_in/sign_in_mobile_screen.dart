@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yolo/providers/mobile_login_provider.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/common_card_view.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/fingerprint_login_option.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/login_with_phone.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/logo_widget.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/welcome_widget.dart';
@@ -82,6 +81,9 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
                                   'SignInMpinFingerprintScreen',
                                   (Route<dynamic> route) => true,
                                 );
+                              } else if (value['message'] ==
+                                  "CardHolder not found") {
+                                Navigator.pushNamed(context, 'OnBoarding');
                               } else {
                                 showToast(value['message'], AppColors.redError);
                               }

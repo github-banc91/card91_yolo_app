@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:yolo/data/local/shared_pref_helper.dart';
-import 'package:yolo/route_helpers.dart';
+import 'package:yolo/screens/authentication/sign_in/on_boarding.dart';
+import 'package:yolo/screens/authentication/sign_in/on_boarding_kyc.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_mobile_screen.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_mpin_fingerprint_screen.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/login_mobile_submit_button.dart';
 import 'package:yolo/screens/dashboard/dashboard_screen.dart';
 
 void main() async {
@@ -54,6 +53,8 @@ class _MyAppState extends State<MyApp> {
           'SignInMpinFingerprintScreen': (context) =>
               const SignInMpinFingerprintScreen(),
           'DashboardScreen': (context) => const DashboardScreen(),
+          'OnBoarding': (context) => const OnBoarding(),
+          'OnBoardingKYC': (context) => const OnBoardingKYC(),
         },
       ),
     );

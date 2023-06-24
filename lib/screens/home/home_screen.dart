@@ -5,10 +5,8 @@ import 'package:yolo/screens/home/home_widgets/deals_of_day.dart';
 import 'package:yolo/screens/home/home_widgets/earn_coin_order_phy_card.dart';
 import 'package:yolo/screens/home/home_widgets/home_options_widget.dart';
 import 'package:yolo/screens/home/home_widgets/recommendation_widget.dart';
-import 'package:yolo/screens/home/home_widgets/sponsered_widget.dart';
 import 'package:yolo/screens/home/home_widgets/top_card.dart';
 import 'package:yolo/utils/common_widgets.dart';
-import 'package:yolo/utils/loading_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String route = 'HomeScreen';

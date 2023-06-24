@@ -16,7 +16,7 @@ class DrawerWidget extends StatelessWidget {
           child: Text('Drawer Header'),
         ),
         ListTile(
-          leading: Icon(
+          leading: const Icon(
             Icons.home,
           ),
           title: const Text('Page 1'),
@@ -25,7 +25,7 @@ class DrawerWidget extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: Icon(
+          leading: const Icon(
             Icons.train,
           ),
           title: const Text('Page 2'),

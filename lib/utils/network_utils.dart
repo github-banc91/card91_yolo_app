@@ -8,7 +8,10 @@ enum NetworkRequestType {
   post,
 }
 
-enum BaseUrl { user }
+enum BaseUrl {
+  user,
+  yolo,
+}
 
 Map<String, dynamic> requestBody = {};
 
@@ -29,6 +32,9 @@ class NetworkUtils {
     switch (baseUrltype) {
       case BaseUrl.user:
         baseUrl = 'api.sb.stag.card91.in';
+        break;
+      case BaseUrl.yolo:
+        baseUrl = '16.170.11.174:2020/api/v1';
         break;
     }
     switch (networkRequestType) {

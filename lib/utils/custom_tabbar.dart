@@ -7,7 +7,7 @@ class CustomTabBar extends StatefulWidget {
   final List<Widget> children;
   final bool isCreateEvent;
   final int currentIndex;
-  CustomTabBar({
+  const CustomTabBar({super.key, 
     required this.tabs,
     required this.children,
     this.isCreateEvent = false,

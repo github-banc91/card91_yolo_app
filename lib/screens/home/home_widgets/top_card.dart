@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_mpin_fingerprint_screen.dart';
 import 'package:yolo/screens/refer/refer_a_user_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
@@ -41,7 +40,7 @@ class TopCard extends StatelessWidget {
                         showGeneralDialog(
                           context: context,
                           barrierDismissible: true,
-                          transitionDuration: Duration(milliseconds: 300),
+                          transitionDuration: const Duration(milliseconds: 300),
                           barrierLabel:
                               MaterialLocalizations.of(context).dialogLabel,
                           barrierColor: Colors.black.withOpacity(0.5),

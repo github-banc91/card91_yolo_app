@@ -33,11 +33,11 @@ class AccountDetails {
 class Customer {
   String? createdTime;
   String? createdBy;
-  Null? modifiedTime;
-  Null? modifiedBy;
+  String? modifiedTime;
+  String? modifiedBy;
   String? id;
-  Null? dob;
-  Null? gender;
+  String? dob;
+  String? gender;
   String? mobile;
   String? email;
   String? name;
@@ -49,7 +49,7 @@ class Customer {
   int? wrongMpinCount;
   int? mpinResetCount;
   String? cardHolderPaymentSideId;
-  Null? locale;
+  String? locale;
   String? status;
 
   Customer(
@@ -131,11 +131,11 @@ class Cards {
   String? cardMode;
   String? orgName;
   String? orgId;
-  Null? cardImage;
+  String? cardImage;
   String? network;
   String? programName;
   String? issuer;
-  Null? van;
+  String? van;
   String? rootCardId;
   bool? primaryCard;
   bool? addOnCard;

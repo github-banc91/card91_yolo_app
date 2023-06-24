@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yolo/screens/authentication/add_referral/add_referral_screen.dart';
 import 'package:yolo/screens/authentication/auth_view_model.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_mobile_screen.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_mpin_fingerprint_screen.dart';
 import 'package:yolo/screens/dashboard/dashboard_screen.dart';
 import 'package:yolo/screens/deals/all_deals_screen.dart';
 import 'package:yolo/screens/deals/view_deals_detail_screen.dart';

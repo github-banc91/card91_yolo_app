@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yolo/data/remote/model/account_details_model.dart';
 import 'package:yolo/data/remote/model/log_in_model.dart';
 import 'package:yolo/data/repo/auth_repo.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_mpin_fingerprint_screen.dart';
 
 import 'package:yolo/screens/dashboard/dashboard_screen.dart';
-import 'package:yolo/utils/app_colors.dart';
-import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/view_model.dart';
 
 class AuthViewModel extends ViewModel {

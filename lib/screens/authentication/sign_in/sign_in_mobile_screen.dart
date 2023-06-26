@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:yolo/providers/access_key_provider.dart';
 import 'package:yolo/providers/mobile_login_provider.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/common_card_view.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_widget/login_with_phone.dart';
@@ -20,8 +21,16 @@ class SignInMobileScreen extends ConsumerStatefulWidget {
 class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
   TextEditingController phoneNumberController = TextEditingController();
   @override
+  void initState() {
+    super.initState();
+    ref.read(accessKeyProvider);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final mobileWatch = ref.watch(mobileLoginStatusProvider);
+    // final accessKeyWatch = ref.watch(accessKeyProviderStatusProvider);
+
     return Scaffold(
       backgroundColor: AppColors.appTheme,
       resizeToAvoidBottomInset: false,

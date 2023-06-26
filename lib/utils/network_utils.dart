@@ -34,7 +34,7 @@ class NetworkUtils {
         baseUrl = 'api.sb.stag.card91.in';
         break;
       case BaseUrl.yolo:
-        baseUrl = '16.170.11.174:2020/api/v1';
+        baseUrl = '16.170.11.174:8080';
         break;
     }
     switch (networkRequestType) {
@@ -49,14 +49,18 @@ class NetworkUtils {
         return response;
       case NetworkRequestType.post:
         // Make a POST request with the specified parameters
+        print("url - ${Uri.http(
+          baseUrl,
+          endpoint,
+        )}");
+        print("requestbody - ${jsonEncode({}..addAll(body ?? {}))}");
         final response = await http.post(
-            Uri.https(baseUrl, endpoint, {}..addAll(queryParameters ?? {})),
+            Uri.http(baseUrl, endpoint, {}..addAll(queryParameters ?? {})),
             headers: {
               'Content-Type': 'application/json',
             }..addAll(
                 headers ?? {},
               ),
-            // Add UserId to the requests from Hive
             body: jsonEncode({}..addAll(body ?? {})));
         return response;
     }

@@ -3,11 +3,13 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yolo/data/local/shared_pref_helper.dart';
+import 'package:yolo/providers/access_key_provider.dart';
 import 'package:yolo/screens/authentication/sign_in/on_boarding.dart';
 import 'package:yolo/screens/authentication/sign_in/on_boarding_kyc.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_mobile_screen.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_mpin_fingerprint_screen.dart';
 import 'package:yolo/screens/dashboard/dashboard_screen.dart';
+import 'package:yolo/utils/network_utils.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -15,48 +17,47 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox('db');
   await Prefs.init();
-  runApp(const MyApp());
+  requestBody = {"email": "abc@gmail.com", "password": "xyz.efg"};
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends ConsumerStatefulWidget {
+  const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends ConsumerState<MyApp> {
   @override
   void initState() {
-    FlutterNativeSplash.remove();
     super.initState();
+    FlutterNativeSplash.remove();
   }
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        // navigatorKey: navigatorKey,
-        theme: ThemeData(
-          primarySwatch: Colors.red,
-          bottomSheetTheme: const BottomSheetThemeData(
-            backgroundColor: Colors.transparent,
-          ),
-          fontFamily: 'RedHat',
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      // navigatorKey: navigatorKey,
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        bottomSheetTheme: const BottomSheetThemeData(
+          backgroundColor: Colors.transparent,
         ),
-        initialRoute: initialRoute(),
-        routes: {
-          'SignInMobileScreen': (context) => const SignInMobileScreen(),
-          'SignInMpinFingerprintScreen': (context) =>
-              const SignInMpinFingerprintScreen(),
-          'DashboardScreen': (context) => const DashboardScreen(),
-          'OnBoarding': (context) => const OnBoarding(),
-          'OnBoardingKYC': (context) => const OnBoardingKYC(),
-        },
+        fontFamily: 'RedHat',
       ),
+      initialRoute: initialRoute(),
+      routes: {
+        'SignInMobileScreen': (context) => const SignInMobileScreen(),
+        'SignInMpinFingerprintScreen': (context) =>
+            const SignInMpinFingerprintScreen(),
+        'DashboardScreen': (context) => const DashboardScreen(),
+        'OnBoarding': (context) => const OnBoarding(),
+        'OnBoardingKYC': (context) => const OnBoardingKYC(),
+      },
     );
   }
 

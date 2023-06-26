@@ -7,7 +7,8 @@ final getAllSealsProvider = StateProvider.autoDispose((ref) async {
   http.Response response = await NetworkUtils.request(
           endpoint: 'deals/',
           networkRequestType: NetworkRequestType.get,
-          baseUrltype: BaseUrl.yolo)
+          baseUrltype: BaseUrl.yolo,
+          protocolType: SSL.https)
       .whenComplete(
           () => ref.read(getAllSealsStatusProvider.notifier).state = false);
   Map<String, dynamic> result = jsonDecode(response.body);

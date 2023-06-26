@@ -29,8 +29,6 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
   @override
   Widget build(BuildContext context) {
     final mobileWatch = ref.watch(mobileLoginStatusProvider);
-    // final accessKeyWatch = ref.watch(accessKeyProviderStatusProvider);
-
     return Scaffold(
       backgroundColor: AppColors.appTheme,
       resizeToAvoidBottomInset: false,

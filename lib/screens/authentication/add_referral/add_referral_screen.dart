@@ -82,7 +82,7 @@ class _AddReferralScreenState extends State<AddReferralScreen> {
         alignment: Alignment.centerRight,
         child: GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, DashboardScreen.route);
+            Navigator.pushNamed(context, "");
           },
           child: Container(
             height: 50,

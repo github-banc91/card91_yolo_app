@@ -55,31 +55,31 @@ class RouteHelper {
             ],
             child: const HomeScreen(),
           ),
-      DashboardScreen.route: (_) => MultiProvider(
-            providers: [
-              ChangeNotifierProvider(create: (_) => HomeViewModel()),
-              ChangeNotifierProvider(create: (_) => dashboardViewModel),
-            ],
-            child: const DashboardScreen(),
-          ),
-      AllDealsScreen.route: (_) => MultiProvider(
-            providers: [
-              ChangeNotifierProvider(create: (_) => HomeViewModel()),
-            ],
-            child: const AllDealsScreen(),
-          ),
+      // DashboardScreen.route: (_) => MultiProvider(
+      //       providers: [
+      //         ChangeNotifierProvider(create: (_) => HomeViewModel()),
+      //         ChangeNotifierProvider(create: (_) => dashboardViewModel),
+      //       ],
+      //       child: const DashboardScreen(),
+      //     ),
+      // AllDealsScreen.route: (_) => MultiProvider(
+      //       providers: [
+      //         ChangeNotifierProvider(create: (_) => HomeViewModel()),
+      //       ],
+      //       child: const AllDealsScreen(),
+      //     ),
       ViewDealsDetailScreen.route: (_) => MultiProvider(
             providers: [
               ChangeNotifierProvider(create: (_) => HomeViewModel()),
             ],
             child: const ViewDealsDetailScreen(),
           ),
-      ReferUserScreen.route: (_) => MultiProvider(
-            providers: [
-              ChangeNotifierProvider(create: (_) => HomeViewModel()),
-            ],
-            child: const ReferUserScreen(),
-          ),
+      // ReferUserScreen.route: (_) => MultiProvider(
+      //       providers: [
+      //         ChangeNotifierProvider(create: (_) => HomeViewModel()),
+      //       ],
+      //       child: const ReferUserScreen(),
+      //     ),
       UserInfoScreen.route: (_) => MultiProvider(
             providers: [
               ChangeNotifierProvider(create: (_) => HomeViewModel()),

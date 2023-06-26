@@ -57,7 +57,7 @@ class AuthViewModel extends ViewModel {
         AccountDetails.fromJson(response.data);
         Navigator.pushNamed(
           context,
-          DashboardScreen.route,
+          '',
         );
       }
     });

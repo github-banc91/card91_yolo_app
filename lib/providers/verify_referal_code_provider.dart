@@ -7,7 +7,8 @@ final verifyReferalCodeProvider = StateProvider.autoDispose((ref) async {
   http.Response response = await NetworkUtils.request(
           endpoint: 'referral/verify',
           networkRequestType: NetworkRequestType.post,
-          baseUrltype: BaseUrl.yolo)
+          baseUrltype: BaseUrl.yolo,
+          protocolType: SSL.https)
       .whenComplete(() => ref
           .read(verifyReferalCodeProviderStatusProvider.notifier)
           .state = false);

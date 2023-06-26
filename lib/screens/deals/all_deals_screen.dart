@@ -4,7 +4,6 @@ import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/typography.dart';
 
 class AllDealsScreen extends StatefulWidget {
-  static const String route = 'AllDealsScreen';
   const AllDealsScreen({Key? key}) : super(key: key);
 
   @override

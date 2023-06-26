@@ -15,7 +15,7 @@ class DealsOfDay extends StatelessWidget {
           onTap: () {
             Navigator.pushNamed(
               context,
-              AllDealsScreen.route,
+              'AllDealsScreen',
             );
           },
           child: Text(

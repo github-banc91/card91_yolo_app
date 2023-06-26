@@ -1,32 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:yolo/data/remote/model/get_referal_code_model.dart';
-import 'package:yolo/screens/home/home_view_model.dart';
+import 'package:yolo/providers/get_referal_code_provider.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
-class ReferUserScreen extends StatefulWidget {
-  static const String route = 'ReferUserScreen';
-  const ReferUserScreen({Key? key}) : super(key: key);
+class ReferUserScreen extends ConsumerStatefulWidget {
+  const ReferUserScreen({super.key});
 
   @override
-  State<ReferUserScreen> createState() => _ReferUserScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ReferUserScreenState();
 }
 
-class _ReferUserScreenState extends State<ReferUserScreen> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<HomeViewModel>().refersGet();
-    });
-  }
-
+class _ReferUserScreenState extends ConsumerState<ReferUserScreen> {
   @override
   Widget build(BuildContext context) {
-    GetReferal? referal = context.watch<HomeViewModel>().referData;
+    final referWatch = ref.watch(getReferalCodeProvider);
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
@@ -76,19 +67,40 @@ class _ReferUserScreenState extends State<ReferUserScreen> {
                   ).s24,
                 ),
                 getSize(height: 25),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(15, 8, 15, 8),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffF2F2F2),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    referal?.referralCode ?? '',
-                    style: Poppins.semiBold(
-                      const Color(0xff595959),
-                    ).s24,
-                  ),
-                ),
+                referWatch.when(
+                    data: (data) {
+                      return Container(
+                        padding: const EdgeInsets.fromLTRB(15, 8, 15, 8),
+                        decoration: BoxDecoration(
+                          color: const Color(0xffF2F2F2),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          data['referralCode'] ?? '',
+                          style: Poppins.semiBold(
+                            const Color(0xff595959),
+                          ).s24,
+                        ),
+                      );
+                    },
+                    error: (error, stackTrace) {
+                      String message = '';
+                      // if (error is ErrorMessage) {
+                      //   message = error.message;
+                      // }
+
+                      return Center(
+                        child: Text(
+                          message,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 16),
+                        ),
+                      );
+                    },
+                    loading: () => const Center(
+                            child: CircularProgressIndicator(
+                          color: Color(0xFFfa9b6d),
+                        ))),
                 getSize(height: 25),
                 Text(
                   'Refer a friend. Learn More',

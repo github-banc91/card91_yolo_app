@@ -9,7 +9,8 @@ final accessKeyProvider = StateProvider.autoDispose((ref) async {
           endpoint: '/api/v1/vendor/login',
           networkRequestType: NetworkRequestType.post,
           baseUrltype: BaseUrl.yolo,
-          body: requestBody)
+          body: requestBody,
+          protocolType: SSL.http)
       .whenComplete(() =>
           ref.read(accessKeyProviderStatusProvider.notifier).state = false);
   Map<String, dynamic> result = jsonDecode(response.body);

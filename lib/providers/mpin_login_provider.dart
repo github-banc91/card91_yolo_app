@@ -10,7 +10,8 @@ final mpinloginProvider = StateProvider.autoDispose((ref) async {
           endpoint: 'issuance/v1/cardholders/login/mpin',
           networkRequestType: NetworkRequestType.post,
           baseUrltype: BaseUrl.user,
-          body: requestBody)
+          body: requestBody,
+          protocolType: SSL.https)
       .whenComplete(
           () => ref.read(mpinLoginStatusProvider.notifier).state = false);
   Map<String, dynamic> result = jsonDecode(response.body);
@@ -18,10 +19,8 @@ final mpinloginProvider = StateProvider.autoDispose((ref) async {
     await Hive.box('db').put('name', result['customer']['name']);
     await Hive.box('db').put('mobile', result['customer']['mobile']);
   }
-
   return response;
 });
-
 final mpinLoginStatusProvider = StateProvider<bool>((ref) {
   return false;
 });

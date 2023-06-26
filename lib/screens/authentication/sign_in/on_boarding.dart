@@ -1,4 +1,3 @@
-
 import 'package:card91_plugin/card91_flutter_library.dart';
 import 'package:flutter/material.dart';
 
@@ -84,8 +83,6 @@ class _OnBoardingState extends State<OnBoarding> {
                   }
                 },
               ),
-
-              // const SponsoredWidget(),
             ],
           ),
         ),

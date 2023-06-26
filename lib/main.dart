@@ -9,6 +9,8 @@ import 'package:yolo/screens/authentication/sign_in/on_boarding_kyc.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_mobile_screen.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_mpin_fingerprint_screen.dart';
 import 'package:yolo/screens/dashboard/dashboard_screen.dart';
+import 'package:yolo/screens/deals/all_deals_screen.dart';
+import 'package:yolo/screens/refer/refer_a_user_screen.dart';
 import 'package:yolo/utils/network_utils.dart';
 
 void main() async {
@@ -57,6 +59,8 @@ class _MyAppState extends ConsumerState<MyApp> {
         'DashboardScreen': (context) => const DashboardScreen(),
         'OnBoarding': (context) => const OnBoarding(),
         'OnBoardingKYC': (context) => const OnBoardingKYC(),
+        'ReferUserScreen': (context) => const ReferUserScreen(),
+        'AllDealsScreen': (context) => const AllDealsScreen(),
       },
     );
   }

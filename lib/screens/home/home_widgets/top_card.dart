@@ -119,7 +119,7 @@ class TopCard extends StatelessWidget {
                                               Navigator.pop(context);
                                               Navigator.pushNamed(
                                                 context,
-                                                ReferUserScreen.route,
+                                                'ReferUserScreen',
                                               );
                                             },
                                           ),

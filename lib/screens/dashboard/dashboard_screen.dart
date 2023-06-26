@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:yolo/providers/get_sponsors_list_provider.dart';
 import 'package:yolo/screens/home/home_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 
-class DashboardScreen extends StatefulWidget {
-  static const String route = "DashboardScreen";
-  const DashboardScreen({Key? key}) : super(key: key);
+class DashboardScreen extends ConsumerStatefulWidget {
+  const DashboardScreen({super.key});
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _DashboardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
@@ -22,6 +24,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
     HomeScreen(),
     HomeScreen(),
   ];
+  @override
+  void initState() {
+    super.initState();
+    ref.read(getSponsorsListProvider);
+  }
 
   @override
   Widget build(BuildContext context) {

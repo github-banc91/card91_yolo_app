@@ -36,18 +36,18 @@ class RouteHelper {
       //       child: const LogInMobileScreen(),
       //     ),
 
-      AddReferralScreen.route: (_) => ChangeNotifierProvider(
-            create: (_) => authRequestViewModel,
-            child: const AddReferralScreen(),
-          ),
+      // AddReferralScreen.route: (_) => ChangeNotifierProvider(
+      //       create: (_) => authRequestViewModel,
+      //       child: const AddReferralScreen(),
+      //     ),
       // DashboardScreen.route: (_) => ChangeNotifierProvider(
       //       create: (_) => dashboardViewModel,
       //       child: const DashboardScreen(),
       //     ),
-      ScanAndPay.route: (_) => ChangeNotifierProvider(
-            create: (_) => dashboardViewModel,
-            child: const ScanAndPay(),
-          ),
+      // ScanAndPay.route: (_) => ChangeNotifierProvider(
+      //       create: (_) => dashboardViewModel,
+      //       child: const ScanAndPay(),
+      //     ),
       HomeScreen.route: (_) => MultiProvider(
             providers: [
               ChangeNotifierProvider(create: (_) => HomeViewModel()),

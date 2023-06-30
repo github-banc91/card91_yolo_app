@@ -1,7 +1,4 @@
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 
 // Enum for the type of network request
@@ -15,6 +12,7 @@ enum BaseUrl {
   yolo,
   yolo1,
   yolo2,
+  card91,
 }
 
 enum SSL {
@@ -40,9 +38,10 @@ class NetworkUtils {
   }) async {
     String baseUrl;
     Uri uri;
+    print(baseUrltype);
     switch (baseUrltype) {
       case BaseUrl.user:
-        baseUrl = 'api.sb.stag.card91.in';
+        baseUrl = 'api-sandbox.card91.io';
         break;
       case BaseUrl.yolo:
         baseUrl = '16.170.11.174:8080';
@@ -52,6 +51,9 @@ class NetworkUtils {
         break;
       case BaseUrl.yolo2:
         baseUrl = '16.170.11.174:4040';
+        break;
+      case BaseUrl.card91:
+        baseUrl = 'integrations.card91.io';
         break;
     }
     switch (protocolType) {
@@ -64,8 +66,6 @@ class NetworkUtils {
     }
     switch (networkRequestType) {
       case NetworkRequestType.get:
-        print(uri);
-        print(headers);
         final response = await http.get(
           uri,
           headers: {}..addAll(
@@ -74,6 +74,13 @@ class NetworkUtils {
         );
         return response;
       case NetworkRequestType.post:
+        print(baseUrl);
+        print(endpoint);
+        print(body);
+        print(queryParameters);
+        print(headers);
+        print(uri);
+
         final response = await http.post(uri,
             headers: {
               'Content-Type': 'application/json',

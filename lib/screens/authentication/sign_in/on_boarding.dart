@@ -1,5 +1,7 @@
-import 'package:card91_plugin/card91_flutter_library.dart';
 import 'package:flutter/material.dart';
+import 'package:yolo/utils/constants.dart';
+
+import 'issue_car.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);
@@ -11,11 +13,9 @@ class OnBoarding extends StatefulWidget {
 class _OnBoardingState extends State<OnBoarding> {
   final Card91Controller _controller = Card91Controller();
   String env = "PROD_SANDBOX";
-  String templateId = "ypay";
-  String cardProgramId = "230528190350397ID1CP9723194";
-  String organizationId = "230526135544169ID1OID4070270";
+  String templateId = "yolo";
   String uniqueId = "string";
-  String authUrl = "https://test.ypay.tech/card91auth/authToken";
+  String authUrl = "https://integrations.card91.io/api:Srfx-bxR/auth/token";
   String cardMode = "DIGITAL_ONLY_CARD";
   String customFields =
       "{\"step1\":[{\"name\":\"full name\",\"displayText\":\"Perfect, May I know your name?\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"\"}}],\"step2\":[{\"name\":\"email\",\"displayText\":\"Hi..! Please tell me your email\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"\"}}],\"step3\":[{\"name\":\"DOB\",\"displayText\":\"Perfect..! Please go ahead with your Date of Birth\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"\"}}]}";
@@ -38,7 +38,7 @@ class _OnBoardingState extends State<OnBoarding> {
                 env: env,
                 templateId: templateId,
                 cardProgramId: cardProgramId,
-                organizationId: organizationId,
+                organizationId: orgId,
                 uniqueId: uniqueId,
                 authUrl: authUrl,
                 cardMode: cardMode,

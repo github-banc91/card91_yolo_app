@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:yolo/utils/network_utils.dart';
 
 final verifyReferalCodeProvider = StateProvider.autoDispose((ref) async {
   http.Response response = await NetworkUtils.request(
-          endpoint: 'referral/verify',
+          endpoint: '/api/v1/referral/verify',
           networkRequestType: NetworkRequestType.post,
-          baseUrltype: BaseUrl.yolo,
-          protocolType: SSL.https)
+          baseUrltype: BaseUrl.yolo2,
+          protocolType: SSL.http)
       .whenComplete(() => ref
           .read(verifyReferalCodeProviderStatusProvider.notifier)
           .state = false);

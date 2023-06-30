@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yolo/screens/scan_and_pay/scan_and_pay.dart';
+import 'package:yolo/providers/cardholder_data_provider.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
-class HomeOptionsWidget extends StatelessWidget {
+class HomeOptionsWidget extends ConsumerWidget {
   const HomeOptionsWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -17,14 +18,15 @@ class HomeOptionsWidget extends StatelessWidget {
           'Scan & Pay',
           'assets/icons/scan and pay.svg',
           () {
-            Navigator.pushNamed(context, ScanAndPay.route);
+            Navigator.pushNamed(context, 'ScanAndPay');
           },
         ),
         getSize(width: 20),
-        commonContainer('My Qr', 'assets/icons/my qr.svg', () {}),
+        commonContainer('My Qr', 'assets/icons/my qr.svg', () {
+          ref.read(cardHolderDataProvider);
+        }),
         getSize(width: 20),
-        commonContainer(
-            'Transaction', 'assets/icons/transfer his.svg', () {}),
+        commonContainer('Transaction', 'assets/icons/transfer his.svg', () {}),
         getSize(width: 20),
         commonContainer('Refer', 'assets/icons/refer.svg', () {}),
       ],

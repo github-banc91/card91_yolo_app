@@ -3,7 +3,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yolo/data/local/shared_pref_helper.dart';
-import 'package:yolo/providers/access_key_provider.dart';
 import 'package:yolo/screens/authentication/sign_in/on_boarding.dart';
 import 'package:yolo/screens/authentication/sign_in/on_boarding_kyc.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_mobile_screen.dart';
@@ -11,6 +10,7 @@ import 'package:yolo/screens/authentication/sign_in/sign_in_mpin_fingerprint_scr
 import 'package:yolo/screens/dashboard/dashboard_screen.dart';
 import 'package:yolo/screens/deals/all_deals_screen.dart';
 import 'package:yolo/screens/refer/refer_a_user_screen.dart';
+import 'package:yolo/screens/scan_and_pay/scan_and_pay.dart';
 import 'package:yolo/utils/network_utils.dart';
 
 void main() async {
@@ -61,6 +61,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         'OnBoardingKYC': (context) => const OnBoardingKYC(),
         'ReferUserScreen': (context) => const ReferUserScreen(),
         'AllDealsScreen': (context) => const AllDealsScreen(),
+        'ScanAndPay': (context) => const ScanAndPay(),
       },
     );
   }

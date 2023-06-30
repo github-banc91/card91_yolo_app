@@ -119,6 +119,7 @@ class _SignInMpinFingerprintScreenState
       };
       ref.read(mpinloginProvider).then((value) async {
         Map<String, dynamic> result = jsonDecode(value.body);
+        print("value.statusCode: ${value.statusCode}");
         if (value.statusCode == 200) {
           Navigator.pushNamed(context, 'DashboardScreen');
           await storage.write(key: 'mpin', value: mpinController.text);

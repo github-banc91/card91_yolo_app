@@ -73,6 +73,7 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
                         ),
                       )
                     : ElevatedButton(
+                        style: ButtonStyle(),
                         onPressed: () {
                           if (phoneNumberController.text.isNotEmpty) {
                             ref.read(mobileLoginStatusProvider.notifier).state =

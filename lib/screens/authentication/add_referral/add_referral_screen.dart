@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yolo/screens/dashboard/dashboard_screen.dart';
+import 'package:yolo/providers/verify_referal_code_provider.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
-class AddReferralScreen extends StatefulWidget {
-  static const String route = 'AddReferralScreen';
-  const AddReferralScreen({Key? key}) : super(key: key);
+class AddReferralScreen extends ConsumerStatefulWidget {
+  const AddReferralScreen({super.key});
 
   @override
-  State<AddReferralScreen> createState() => _AddReferralScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _AddReferralScreenState();
 }
 
-class _AddReferralScreenState extends State<AddReferralScreen> {
+class _AddReferralScreenState extends ConsumerState<AddReferralScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -82,7 +83,11 @@ class _AddReferralScreenState extends State<AddReferralScreen> {
         alignment: Alignment.centerRight,
         child: GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, "");
+            ref.read(verifyReferalCodeProvider).then((value) {
+              if (value[''] == "") {
+                Navigator.pushNamed(context, "");
+              }
+            });
           },
           child: Container(
             height: 50,

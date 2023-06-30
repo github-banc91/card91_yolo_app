@@ -12,7 +12,6 @@ final getReferalCodeProvider = FutureProvider.autoDispose((ref) async {
       protocolType: SSL.http,
       headers: {
         'Authorization': Hive.box('db').get('accessKey') ?? '',
-        'Verification': Hive.box('db').get('accessToken') ?? ''
       });
 
   Map<String, dynamic> result = jsonDecode(response.body);

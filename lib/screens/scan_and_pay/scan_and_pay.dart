@@ -2,26 +2,30 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:yolo/data/remote/model/card_holder_data_model.dart';
+import 'package:yolo/providers/cardholder_data_provider.dart';
 import 'package:yolo/screens/scan_and_pay/user_info_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
+import 'package:yolo/utils/constants.dart';
+import 'package:yolo/utils/network_utils.dart';
 import 'package:yolo/utils/typography.dart';
 
-class ScanAndPay extends StatefulWidget {
-  static const String route = 'ScanAndPay';
-  const ScanAndPay({Key? key}) : super(key: key);
+class ScanAndPay extends ConsumerStatefulWidget {
+  const ScanAndPay({super.key});
 
   @override
-  State<ScanAndPay> createState() => _ScanAndPayState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _ScanAndPayState();
 }
 
-class _ScanAndPayState extends State<ScanAndPay>
+class _ScanAndPayState extends ConsumerState<ScanAndPay>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+  late TextEditingController searchController;
   int _currentSelection = 1;
   final GlobalKey _key1 = GlobalKey();
   final GlobalKey _key2 = GlobalKey();
@@ -65,6 +69,8 @@ class _ScanAndPayState extends State<ScanAndPay>
         currentIndex = _tabController.index;
       });
     });
+
+    searchController = TextEditingController();
   }
 
   int page = 1;
@@ -90,6 +96,7 @@ class _ScanAndPayState extends State<ScanAndPay>
 
   @override
   Widget build(BuildContext context) {
+    final cardWatch = ref.watch(cardHolderProvider);
     var maximumHeight = MediaQuery.of(context).size.height;
     var minimumHeight = MediaQuery.of(context).size.height * 0.25;
     return Scaffold(
@@ -114,7 +121,7 @@ class _ScanAndPayState extends State<ScanAndPay>
               });
             },
             panelBuilder: (scrollController) =>
-                buildSlidingPanel(scrollController),
+                buildSlidingPanel(scrollController, cardWatch),
             body: Column(
               children: [
                 Expanded(
@@ -128,7 +135,8 @@ class _ScanAndPayState extends State<ScanAndPay>
     );
   }
 
-  Widget buildSlidingPanel(ScrollController sc) => MediaQuery.removePadding(
+  Widget buildSlidingPanel(ScrollController sc, List cardWatch) =>
+      MediaQuery.removePadding(
         context: context,
         removeTop: true,
         child: ListView(
@@ -186,6 +194,7 @@ class _ScanAndPayState extends State<ScanAndPay>
               child: Padding(
                 padding: const EdgeInsets.only(left: 20.0, right: 20),
                 child: TextFormField(
+                  controller: searchController,
                   decoration: InputDecoration(
                     prefixIcon: isExpanded
                         ? const Icon(Icons.search)
@@ -198,6 +207,19 @@ class _ScanAndPayState extends State<ScanAndPay>
                       borderRadius: BorderRadius.circular(isExpanded ? 45 : 12),
                     ),
                   ),
+                  maxLength: 10,
+                  onFieldSubmitted: (data) {
+                    requestBody = {
+                      "contact_user_mobile": "91$data",
+                      "org_id": orgId,
+                      "card_program_id": cardProgramId,
+                      "issuer": "YES",
+                      "primary_user_mobile": "91$data"
+                    };
+                    ref.read(cardHolderDataProvider);
+                    print(data);
+                  },
+                  keyboardType: TextInputType.phone,
                 ),
               ),
             ),
@@ -332,9 +354,7 @@ class _ScanAndPayState extends State<ScanAndPay>
                       ),
                     ],
                   ),
-                  returnPage(
-                    _currentSelection,
-                  ),
+                  returnPage(_currentSelection, cardWatch),
                 ],
               ),
           ],
@@ -394,60 +414,55 @@ class _ScanAndPayState extends State<ScanAndPay>
     super.dispose();
   }
 
-  returnPage(currentTab) {
+  Widget returnPage(currentTab, List cardWatch) {
     switch (currentTab ?? 1) {
       case 1:
         return SizedBox(
           height: MediaQuery.of(context).size.height * 0.7,
-          child: listShow(),
+          child: listShow(cardWatch),
         );
       case 2:
         return SizedBox(
           height: MediaQuery.of(context).size.height * 0.7,
-          child: listShow(),
+          child: listShow(cardWatch),
         );
       case 3:
         return SizedBox(
           height: MediaQuery.of(context).size.height * 0.7,
-          child: listShow(),
+          child: listShow(cardWatch),
         );
       default:
         return Container();
     }
   }
 
-  Widget listShow() {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: 25,
-      scrollDirection: Axis.vertical,
-      itemBuilder: (ctx, i) {
-        return ListTile(
-          onTap: () {
-            Navigator.pushNamed(
-              context,
-              UserInfoScreen.route,
-            );
-          },
-          leading: CircleAvatar(
-            backgroundImage: NetworkImage(
-              'https://i.pravatar.cc/50$i',
+  Widget listShow(List cardWatch) {
+    return cardWatch.isNotEmpty
+        ? ListTile(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                UserInfoScreen.route,
+              );
+            },
+            leading: const CircleAvatar(
+              backgroundImage: NetworkImage(
+                'https://i.pravatar.cc/50',
+              ),
             ),
-          ),
-          title: Text(
-            'John dew',
-            style: Poppins.semiBold(AppColors.blackFont).s14,
-          ),
-          subtitle: Text(
-            'Tuesday, 29 Nov 2021',
-            style: Poppins.regular(AppColors.blackFont.withOpacity(0.7)).s12,
-          ),
-          trailing: const IconButton(
-            onPressed: null,
-            icon: Icon(Icons.star_border_outlined),
-          ),
-        );
-      },
-    );
+            title: Text(
+              cardWatch[0]['cardHolderName'] ?? 'John dew',
+              style: Poppins.semiBold(AppColors.blackFont).s14,
+            ),
+            subtitle: Text(
+              'Tuesday, 29 Nov 2021',
+              style: Poppins.regular(AppColors.blackFont.withOpacity(0.7)).s12,
+            ),
+            trailing: const IconButton(
+              onPressed: null,
+              icon: Icon(Icons.star_border_outlined),
+            ),
+          )
+        : const SizedBox.shrink();
   }
 }

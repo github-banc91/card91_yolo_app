@@ -27,21 +27,21 @@ class _ResetMpinState extends ConsumerState<ResetMpin> {
   @override
   void initState() {
     super.initState();
-    _mpincontrollers = List.generate(6, (index) => TextEditingController());
-    _mpinfocusNodes = List.generate(6, (index) => FocusNode());
-    _confirmMpinfocusNodes = List.generate(6, (index) => FocusNode());
+    _mpincontrollers = List.generate(5, (index) => TextEditingController());
+    _mpinfocusNodes = List.generate(5, (index) => FocusNode());
+    _confirmMpinfocusNodes = List.generate(5, (index) => FocusNode());
     _confirmMpincontrollers =
-        List.generate(6, (index) => TextEditingController());
+        List.generate(5, (index) => TextEditingController());
   }
 
   @override
   void dispose() {
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 5; i++) {
       _mpincontrollers[i].dispose();
       _mpinfocusNodes[i].dispose();
     }
 
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 5; i++) {
       _confirmMpinfocusNodes[i].dispose();
       _confirmMpincontrollers[i].dispose();
     }
@@ -130,7 +130,7 @@ class _ResetMpinState extends ConsumerState<ResetMpin> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                6,
+                5,
                 (index) => Container(
                   width: 40,
                   height: 40,
@@ -162,7 +162,7 @@ class _ResetMpinState extends ConsumerState<ResetMpin> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                6,
+                5,
                 (index) => Container(
                   width: 40,
                   height: 40,

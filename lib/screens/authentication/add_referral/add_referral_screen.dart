@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yolo/providers/verify_referal_code_provider.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
+import 'package:yolo/utils/network_utils.dart';
 import 'package:yolo/utils/typography.dart';
 
 class AddReferralScreen extends ConsumerStatefulWidget {
@@ -15,6 +18,13 @@ class AddReferralScreen extends ConsumerStatefulWidget {
 }
 
 class _AddReferralScreenState extends ConsumerState<AddReferralScreen> {
+  late TextEditingController referCodeController;
+  @override
+  void initState() {
+    super.initState();
+    referCodeController = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -63,6 +73,7 @@ class _AddReferralScreenState extends ConsumerState<AddReferralScreen> {
     return Padding(
       padding: const EdgeInsets.only(top: 450, left: 20, right: 20),
       child: TextFormField(
+        controller: referCodeController,
         keyboardType: TextInputType.number,
         style: Poppins.semiBold().s20,
         decoration: InputDecoration(
@@ -83,11 +94,25 @@ class _AddReferralScreenState extends ConsumerState<AddReferralScreen> {
         alignment: Alignment.centerRight,
         child: GestureDetector(
           onTap: () {
-            ref.read(verifyReferalCodeProvider).then((value) {
-              if (value[''] == "") {
-                Navigator.pushNamed(context, "");
-              }
-            });
+            if (referCodeController.text.isNotEmpty) {
+              requestBody = {
+                "ref_code": referCodeController.text,
+                "phone_number": "9123456784",
+                "email": "hello@gmaill.com",
+                "name": "xyz abc",
+                "dateOfBirth": "2000-12-23"
+              };
+              ref.read(verifyReferalCodeProvider).then((value) {
+                Map<String, dynamic> result = jsonDecode(value.body);
+                if (value.statusCode == 200) {
+                  Navigator.pushNamed(context, "ResetMpin");
+                } else {
+                  showToast(result['message'], AppColors.redError);
+                }
+              });
+            } else {
+              showToast("please enter the referal code", AppColors.redError);
+            }
           },
           child: Container(
             height: 50,

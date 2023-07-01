@@ -9,12 +9,13 @@ final verifyReferalCodeProvider = StateProvider.autoDispose((ref) async {
           endpoint: '/api/v1/referral/verify',
           networkRequestType: NetworkRequestType.post,
           baseUrltype: BaseUrl.yolo2,
+          body: requestBody,
           protocolType: SSL.http)
       .whenComplete(() => ref
           .read(verifyReferalCodeProviderStatusProvider.notifier)
           .state = false);
-  Map<String, dynamic> result = jsonDecode(response.body);
-  return result;
+  // Map<String, dynamic> result = jsonDecode(response.body);
+  return response;
 });
 
 final verifyReferalCodeProviderStatusProvider = StateProvider<bool>((ref) {

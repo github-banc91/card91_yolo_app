@@ -57,6 +57,7 @@ class _OnBoardingState extends State<OnBoarding> {
                       // Do something to indicate that the API calls have Server Error
                       break;
                     case "C91_ISSUE_CARD_SCREEN_SUCCESS":
+                      Navigator.pushNamed(context, "AddReferralScreen");
                       // Do something to indicate that the API calls have succeeded
                       break;
                     case "C91_ISSUE_CARD_MISSING_PARAMETER":

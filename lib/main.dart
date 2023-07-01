@@ -3,8 +3,10 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yolo/data/local/shared_pref_helper.dart';
+import 'package:yolo/screens/authentication/add_referral/add_referral_screen.dart';
 import 'package:yolo/screens/authentication/sign_in/on_boarding.dart';
 import 'package:yolo/screens/authentication/sign_in/on_boarding_kyc.dart';
+import 'package:yolo/screens/authentication/sign_in/reset_mpin_screen.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_mobile_screen.dart';
 import 'package:yolo/screens/authentication/sign_in/sign_in_mpin_fingerprint_screen.dart';
 import 'package:yolo/screens/dashboard/dashboard_screen.dart';
@@ -62,6 +64,8 @@ class _MyAppState extends ConsumerState<MyApp> {
         'ReferUserScreen': (context) => const ReferUserScreen(),
         'AllDealsScreen': (context) => const AllDealsScreen(),
         'ScanAndPay': (context) => const ScanAndPay(),
+        'ResetMpin': (context) => const ResetMpin(),
+        'AddReferralScreen': (context) => const AddReferralScreen(),
       },
     );
   }

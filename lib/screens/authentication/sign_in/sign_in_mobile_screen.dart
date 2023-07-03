@@ -91,7 +91,7 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
                                 );
                               } else if (value['message'] ==
                                   "CardHolder not found") {
-                                Navigator.pushNamed(context, 'ResetMpin');
+                                Navigator.pushNamed(context, 'OnBoarding');
                               } else {
                                 showToast(value['message'], AppColors.redError);
                               }

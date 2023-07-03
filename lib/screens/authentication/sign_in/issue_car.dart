@@ -83,20 +83,22 @@ class _IssueCardsState extends State<IssueCards> {
     return JavascriptChannel(
         name: "ReactNativeWebView",
         onMessageReceived: (JavascriptMessage message) {
-          print("sample message ${message.message}");
-          JsonResponseCreateCard javascriptResponseModelFromJson(String str) {
-            return JsonResponseCreateCard.fromJson(json.decode(str));
-          }
-
-          JsonResponseCreateCard javaScriptResponseData =
-              javascriptResponseModelFromJson(message.message);
-
-          print(
-              "javascript type ${javaScriptResponseData.type} == widget type ${INITIALIZED_CARD}");
-          if (javaScriptResponseData.type == INITIALIZED_CARD) {
+          // print("sample message ${message.message}");
+          // JsonResponseCreateCard javascriptResponseModelFromJson(String str) {
+          //   return JsonResponseCreateCard.fromJson(json.decode(str));
+          // }
+          // print("Message on submit------->${message.message}");
+          // JsonResponseCreateCard javaScriptResponseData =
+          //     javascriptResponseModelFromJson(message.message);
+          //
+          // print(
+          //     "javascript type ${javaScriptResponseData.type} == widget type ${INITIALIZED_CARD}");
+          if(json.decode(message.message)['type'].toString() == INITIALIZED_CARD)
+          {
             setParamOnWebView();
           }
-          widget.onDataResponse(javaScriptResponseData.type.toString());
+
+          widget.onDataResponse(json.decode(message.message)['type'].toString());
         });
   }
 
@@ -151,7 +153,7 @@ class _IssueCardsState extends State<IssueCards> {
     }
     finalScript =
         "(function () {document.dispatchEvent(new MessageEvent(\"message\",$script));})();";
-    //print("Script ------>"+finalScript);
+    print("Script ------>"+finalScript);
     await _webViewController
         ?.runJavascriptReturningResult(finalScript.toString());
   }

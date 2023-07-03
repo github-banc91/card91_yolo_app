@@ -182,6 +182,7 @@ class _SignInMpinFingerprintScreenState
                   ),
                   style: Poppins.bold().s20,
                   maxLength: 6,
+                  keyboardType: TextInputType.number,
                 ),
                 getSize(height: 15),
                 const ForgotMPINWidget(),

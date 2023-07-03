@@ -16,9 +16,6 @@ final favouriteContactsProvider = FutureProvider.autoDispose((ref) async {
     baseUrltype: BaseUrl.user,
     protocolType: SSL.https,
   );
-  print("response.body ${response.body}");
-  print("response.statusCode ${response.statusCode}");
   Map<String, dynamic> result = jsonDecode(response.body);
-  print("favouriteContactsProvider = $result");
   return result;
 });

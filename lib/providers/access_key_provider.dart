@@ -14,7 +14,6 @@ final accessKeyProvider = StateProvider.autoDispose((ref) async {
       .whenComplete(() =>
           ref.read(accessKeyProviderStatusProvider.notifier).state = false);
   Map<String, dynamic> result = jsonDecode(response.body);
-  print("accessKey - $result");
   if (response.statusCode == 200) {
     await Hive.box('db').put('accessKey', result['accessKey']);
   }

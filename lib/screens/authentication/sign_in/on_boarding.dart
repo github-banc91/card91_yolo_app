@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yolo/utils/constants.dart';
 
 import 'issue_car.dart';
@@ -15,10 +16,11 @@ class _OnBoardingState extends State<OnBoarding> {
   String env = "PROD_SANDBOX";
   String templateId = "yolo";
   String uniqueId = "string";
-  String authUrl = "https://integrations.card91.io/api:Srfx-bxR/auth/token?x-data-source=test";
+  String authUrl =
+      "https://integrations.card91.io/api:Srfx-bxR/auth/token?x-data-source=test";
   String cardMode = "DIGITAL_ONLY_CARD";
   String customFields =
-      "{\"step1\":[{\"name\":\"fullName\",\"displayText\":\"Perfect, May I know your name?\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"\"}},{\"name\":\"mobile\",\"displayText\":\"\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"913636363636\"}}],\"step2\":[{\"name\":\"email\",\"displayText\":\"Hi..! Please tell me your email\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"\"}}],\"step3\":[{\"name\":\"nameOnCard\",\"displayText\":\"Perfect..! Please go ahead with your name on card.\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"\"}}]}";
+      "{\"step1\":[{\"name\":\"fullName\",\"displayText\":\"Perfect, May I know your name?\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"\"}},{\"name\":\"mobile\",\"displayText\":\"\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"${Hive.box('db').get('phoneNumber')}\"}}],\"step2\":[{\"name\":\"email\",\"displayText\":\"Hi..! Please tell me your email\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"\"}}],\"step3\":[{\"name\":\"nameOnCard\",\"displayText\":\"Perfect..! Please go ahead with your name on card.\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"\"}}]}";
   int _currentFunctionIndex = 0;
   @override
   void initState() {

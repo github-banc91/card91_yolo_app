@@ -16,7 +16,7 @@ class IssueCards extends StatefulWidget {
   final Card91Controller card91controller;
   final Function(String) onDataResponse;
 
-  IssueCards(
+  const IssueCards(
       {super.key,
       required this.env,
       required this.templateId,
@@ -41,8 +41,8 @@ class _IssueCardsState extends State<IssueCards> {
   String INITIALIZED_CARD = "C91_ISSUE_CARD_SCREEN_INITIALISED";
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
-  _IssueCardsState(Card91Controller _controller) {
-    _controller.callStep = stepNavigation as void Function(String step)?;
+  _IssueCardsState(Card91Controller controller) {
+    controller.callStep = stepNavigation;
   }
 
   @override
@@ -54,7 +54,7 @@ class _IssueCardsState extends State<IssueCards> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Stack(
@@ -93,12 +93,13 @@ class _IssueCardsState extends State<IssueCards> {
           //
           // print(
           //     "javascript type ${javaScriptResponseData.type} == widget type ${INITIALIZED_CARD}");
-          if(json.decode(message.message)['type'].toString() == INITIALIZED_CARD)
-          {
+          if (json.decode(message.message)['type'].toString() ==
+              INITIALIZED_CARD) {
             setParamOnWebView();
           }
 
-          widget.onDataResponse(json.decode(message.message)['type'].toString());
+          widget
+              .onDataResponse(json.decode(message.message)['type'].toString());
         });
   }
 
@@ -153,7 +154,7 @@ class _IssueCardsState extends State<IssueCards> {
     }
     finalScript =
         "(function () {document.dispatchEvent(new MessageEvent(\"message\",$script));})();";
-    print("Script ------>"+finalScript);
+    print("Script ------>" + finalScript);
     await _webViewController
         ?.runJavascriptReturningResult(finalScript.toString());
   }

@@ -8,14 +8,18 @@ final favouriteContactsProvider = FutureProvider.autoDispose((ref) async {
   http.Response response = await NetworkUtils.request(
     endpoint: 'api:Srfx-bxR/contact/favourites/get',
     networkRequestType: NetworkRequestType.post,
-    body: {
-      "mobile": Hive.box('db').get('phoneNumber'),
-      "card_id": Hive.box('db').get('cardId')
-    },
+    body: requestBody,
     queryParameters: {"x-data-source": "test"},
-    baseUrltype: BaseUrl.user,
+    baseUrltype: BaseUrl.card91,
     protocolType: SSL.https,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': Hive.box('db').get('jwt')
+    },
   );
-  Map<String, dynamic> result = jsonDecode(response.body);
+  print('result ${response.body}');
+  print('statuscode ${response.statusCode}');
+
+  List<dynamic> result = jsonDecode(response.body);
   return result;
 });

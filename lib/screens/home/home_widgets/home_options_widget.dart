@@ -26,7 +26,9 @@ class HomeOptionsWidget extends ConsumerWidget {
           ref.read(cardHolderDataProvider);
         }),
         getSize(width: 20),
-        commonContainer('Transaction', 'assets/icons/transfer his.svg', () {}),
+        commonContainer('Transaction', 'assets/icons/transfer his.svg', () {
+          Navigator.pushNamed(context, 'ScanNpay');
+        }),
         getSize(width: 20),
         commonContainer('Refer', 'assets/icons/refer.svg', () {}),
       ],

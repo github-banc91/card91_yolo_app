@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yolo/providers/verify_referal_code_provider.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
@@ -74,7 +75,6 @@ class _AddReferralScreenState extends ConsumerState<AddReferralScreen> {
       padding: const EdgeInsets.only(top: 450, left: 20, right: 20),
       child: TextFormField(
         controller: referCodeController,
-        keyboardType: TextInputType.number,
         style: Poppins.semiBold().s20,
         decoration: InputDecoration(
           labelText: 'Referral code',
@@ -94,10 +94,12 @@ class _AddReferralScreenState extends ConsumerState<AddReferralScreen> {
         alignment: Alignment.centerRight,
         child: GestureDetector(
           onTap: () {
-            if (referCodeController.text.isNotEmpty) {
+            if (referCodeController.text != "") {
+              print("referCodeController.text ${referCodeController.text}");
               requestBody = {
                 "ref_code": referCodeController.text,
-                "phone_number": "9123456784",
+                "phone_number":
+                    Hive.box('db').get('phoneNumber').toString().split('91')[1],
                 "email": "hello@gmaill.com",
                 "name": "xyz abc",
                 "dateOfBirth": "2000-12-23"

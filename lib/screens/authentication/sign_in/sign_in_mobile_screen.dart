@@ -73,16 +73,20 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
                         ),
                       )
                     : ElevatedButton(
-                        style: ButtonStyle(),
+                        style: const ButtonStyle(),
                         onPressed: () {
                           if (phoneNumberController.text.isNotEmpty) {
                             ref.read(mobileLoginStatusProvider.notifier).state =
                                 true;
 
                             requestBody = {
-                              'mobile_number': phoneNumberController.text
+                              'mobile_number': "91${phoneNumberController.text}"
                             };
                             ref.read(mobileloginProvider).then((value) {
+                              print(
+                                  " mobile_number 91${phoneNumberController.text}");
+                              print(
+                                  "value['mpinExists'] ${value['mpinExists']}");
                               if (value['mpinExists'] == true) {
                                 Navigator.pushNamedAndRemoveUntil(
                                   context,

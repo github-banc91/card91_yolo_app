@@ -66,6 +66,12 @@ class NetworkUtils {
     }
     switch (networkRequestType) {
       case NetworkRequestType.get:
+        print(baseUrl);
+        print(endpoint);
+        print(jsonEncode(body));
+        print(queryParameters);
+        print(headers);
+        print(uri);
         final response = await http.get(
           uri,
           headers: {}..addAll(
@@ -76,18 +82,13 @@ class NetworkUtils {
       case NetworkRequestType.post:
         print(baseUrl);
         print(endpoint);
-        print(body);
+        print(jsonEncode(body));
         print(queryParameters);
         print(headers);
         print(uri);
 
-        final response = await http.post(uri,
-            headers: {
-              'Content-Type': 'application/json',
-            }..addAll(
-                headers ?? {},
-              ),
-            body: jsonEncode({}..addAll(body ?? {})));
+        final response =
+            await http.post(uri, headers: headers, body: jsonEncode(body));
         return response;
     }
   }

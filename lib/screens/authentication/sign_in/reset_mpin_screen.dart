@@ -27,21 +27,21 @@ class _ResetMpinState extends ConsumerState<ResetMpin> {
   @override
   void initState() {
     super.initState();
-    _mpincontrollers = List.generate(5, (index) => TextEditingController());
-    _mpinfocusNodes = List.generate(5, (index) => FocusNode());
-    _confirmMpinfocusNodes = List.generate(5, (index) => FocusNode());
+    _mpincontrollers = List.generate(6, (index) => TextEditingController());
+    _mpinfocusNodes = List.generate(6, (index) => FocusNode());
+    _confirmMpinfocusNodes = List.generate(6, (index) => FocusNode());
     _confirmMpincontrollers =
-        List.generate(5, (index) => TextEditingController());
+        List.generate(6, (index) => TextEditingController());
   }
 
   @override
   void dispose() {
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 6; i++) {
       _mpincontrollers[i].dispose();
       _mpinfocusNodes[i].dispose();
     }
 
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 6; i++) {
       _confirmMpinfocusNodes[i].dispose();
       _confirmMpincontrollers[i].dispose();
     }
@@ -52,7 +52,7 @@ class _ResetMpinState extends ConsumerState<ResetMpin> {
     final text = value.trim();
     if (text.isNotEmpty) {
       if (text.length == 1) {
-        if (index < 5) {
+        if (index < 6) {
           _mpinfocusNodes[index + 1].requestFocus();
         } else {
           // Perform some action when the OTP is entered, e.g., verify the OTP
@@ -69,7 +69,7 @@ class _ResetMpinState extends ConsumerState<ResetMpin> {
     final text = value.trim();
     if (text.isNotEmpty) {
       if (text.length == 1) {
-        if (index < 5) {
+        if (index < 6) {
           _confirmMpinfocusNodes[index + 1].requestFocus();
         } else {
           // Perform some action when the OTP is entered, e.g., verify the OTP
@@ -112,7 +112,7 @@ class _ResetMpinState extends ConsumerState<ResetMpin> {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                "To setup your MPIN create 5 digit code and confirm it below",
+                "To setup your MPIN create 6 digit code and confirm it below",
                 style:
                     Poppins.regular(AppColors.blackFont.withOpacity(0.7)).s18,
                 textAlign: TextAlign.center,
@@ -130,7 +130,7 @@ class _ResetMpinState extends ConsumerState<ResetMpin> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                5,
+                6,
                 (index) => Container(
                   width: 40,
                   height: 40,
@@ -162,7 +162,7 @@ class _ResetMpinState extends ConsumerState<ResetMpin> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                5,
+                6,
                 (index) => Container(
                   width: 40,
                   height: 40,

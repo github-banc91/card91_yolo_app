@@ -16,7 +16,6 @@ final favouriteManagingProvider = StateProvider.autoDispose((ref) async {
   if (response.statusCode == 200) {
     ref.read(favouriteManagingStatusProvider.notifier).state = result;
   }
-
   return result;
 });
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:share_plus/share_plus.dart';
+// import 'package:share_plus/share_plus.dart';
 import 'package:yolo/providers/get_referal_code_provider.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
@@ -141,10 +141,10 @@ class _ReferUserScreenState extends ConsumerState<ReferUserScreen> {
   void _onShare() async {
     final box = context.findRenderObject() as RenderBox?;
 
-    await Share.share(
-      'This is developer testing',
-      subject: 'Testing product',
-      sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
-    );
+    // await Share.share(
+    //   'This is developer testing',
+    //   subject: 'Testing product',
+    //   sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
+    // );
   }
 }

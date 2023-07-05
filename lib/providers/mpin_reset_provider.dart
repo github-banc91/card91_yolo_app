@@ -9,9 +9,15 @@ final resetMpinProvider = StateProvider.autoDispose((ref) async {
           networkRequestType: NetworkRequestType.post,
           baseUrltype: BaseUrl.user,
           body: requestBody,
+          headers: {
+            'Content-Type': 'application/json',
+          },
           protocolType: SSL.https)
       .whenComplete(() =>
           ref.read(resetMpinProviderStatusProvider.notifier).state = false);
+  print("response ${response.body}");
+  print("response ${response.statusCode}");
+
   return response;
 });
 

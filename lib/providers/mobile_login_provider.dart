@@ -7,17 +7,14 @@ import 'package:yolo/utils/network_utils.dart';
 final mobileloginProvider = StateProvider.autoDispose((ref) async {
   http.Response response = await NetworkUtils.request(
           endpoint:
-              '/issuance/v1/cardholders/91${requestBody['mobile_number']}/mpin/status',
+              '/issuance/v1/cardholders/${requestBody['mobile_number']}/mpin/status',
           networkRequestType: NetworkRequestType.get,
           baseUrltype: BaseUrl.user,
           protocolType: SSL.https)
       .whenComplete(
           () => ref.read(mobileLoginStatusProvider.notifier).state = false);
   Map<String, dynamic> result = jsonDecode(response.body);
-  if (response.statusCode == 200) {
-    await Hive.box('db')
-        .put('phoneNumber', "91${requestBody['mobile_number']}");
-  }
+  await Hive.box('db').put('phoneNumber', "${requestBody['mobile_number']}");
   print(result);
   return result;
 });

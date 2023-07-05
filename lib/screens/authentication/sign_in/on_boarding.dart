@@ -1,8 +1,7 @@
+import 'package:card91_plugin/card91_flutter_library.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yolo/utils/constants.dart';
-
-import 'issue_car.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);
@@ -19,12 +18,18 @@ class _OnBoardingState extends State<OnBoarding> {
   String authUrl =
       "https://integrations.card91.io/api:Srfx-bxR/auth/token?x-data-source=test";
   String cardMode = "DIGITAL_ONLY_CARD";
+  String? phoneNumber;
   String customFields =
       "{\"step1\":[{\"name\":\"fullName\",\"displayText\":\"Perfect, May I know your name?\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"\"}},{\"name\":\"mobile\",\"displayText\":\"\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"${Hive.box('db').get('phoneNumber')}\"}}],\"step2\":[{\"name\":\"email\",\"displayText\":\"Hi..! Please tell me your email\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"\"}}],\"step3\":[{\"name\":\"nameOnCard\",\"displayText\":\"Perfect..! Please go ahead with your name on card.\",\"elements\":{\"type\":\"text\",\"defaultValue\":\"\"}}]}";
   int _currentFunctionIndex = 0;
+
+  String getPhoneNumber() {
+    return Hive.box('db').get('phoneNumber');
+  }
+
   @override
   void initState() {
-    print('Onboarding screen initialised');
+    print('Onboarding screen initialised $customFields');
     super.initState();
   }
 
@@ -38,7 +43,7 @@ class _OnBoardingState extends State<OnBoarding> {
             color: Colors.black12,
             child: Column(
               children: [
-                IssueCards(
+                IssueCard(
                   env: env,
                   templateId: templateId,
                   cardProgramId: cardProgramId,

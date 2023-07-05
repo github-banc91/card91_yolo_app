@@ -13,6 +13,7 @@ import 'package:yolo/screens/dashboard/dashboard_screen.dart';
 import 'package:yolo/screens/deals/all_deals_screen.dart';
 import 'package:yolo/screens/refer/refer_a_user_screen.dart';
 import 'package:yolo/screens/scan_and_pay/scan_and_pay.dart';
+import 'package:yolo/screens/scan_and_pay/scan_n_pay.dart';
 import 'package:yolo/utils/network_utils.dart';
 
 void main() async {
@@ -66,6 +67,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         'ScanAndPay': (context) => const ScanAndPay(),
         'ResetMpin': (context) => const ResetMpin(),
         'AddReferralScreen': (context) => const AddReferralScreen(),
+        'ScanNpay': (context) => const ScanNpay(),
       },
     );
   }

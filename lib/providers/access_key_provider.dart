@@ -6,19 +6,18 @@ import 'package:yolo/utils/network_utils.dart';
 
 final accessKeyProvider = StateProvider.autoDispose((ref) async {
   http.Response response = await NetworkUtils.request(
-          endpoint: '/api/v1/vendor/login',
-          networkRequestType: NetworkRequestType.post,
-          baseUrltype: BaseUrl.yolo,
-          body: requestBody,
-          protocolType: SSL.http)
-      .whenComplete(() =>
-          ref.read(accessKeyProviderStatusProvider.notifier).state = false);
+      endpoint: '/api/v1/vendor/login',
+      networkRequestType: NetworkRequestType.post,
+      baseUrltype: BaseUrl.yolo,
+      body: requestBody,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      protocolType: SSL.http);
+
   Map<String, dynamic> result = jsonDecode(response.body);
+  print("accessKeyProvider - ${response.body}");
   if (response.statusCode == 200) {
     await Hive.box('db').put('accessKey', result['accessKey']);
   }
-});
-
-final accessKeyProviderStatusProvider = StateProvider<bool>((ref) {
-  return false;
 });

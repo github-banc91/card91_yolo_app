@@ -11,15 +11,18 @@ final cardHolderDataProvider = StateProvider.autoDispose((ref) async {
     queryParameters: {"x-data-source": "test"},
     baseUrltype: BaseUrl.card91,
     protocolType: SSL.https,
-  );
+  ).whenComplete(() => ref.read(cardHolderLoader.notifier).state = false);
   List result = jsonDecode(response.body);
   if (response.statusCode == 200) {
     ref.read(cardHolderProvider.notifier).state = result;
   }
-
   return result;
 });
 
 final cardHolderProvider = StateProvider.autoDispose((ref) {
   return [];
+});
+
+final cardHolderLoader = StateProvider.autoDispose<bool>((ref) {
+  return false;
 });

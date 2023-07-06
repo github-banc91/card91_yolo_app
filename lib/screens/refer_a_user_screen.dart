@@ -155,8 +155,7 @@ class _ReferUserScreenState extends ConsumerState<ReferUserScreen> {
   }
 
   void _onShare() async {
-    final box = context.findRenderObject() as RenderBox?;
-
+    // final box = context.findRenderObject() as RenderBox?;
     // await Share.share(
     //   'This is developer testing',
     //   subject: 'Testing product',

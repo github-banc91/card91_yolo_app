@@ -47,10 +47,10 @@ class _ScanAndPayState extends ConsumerState<ScanAndPay>
   }
 
   _setWidgetPositionx(GlobalKey selectedKey) {
-    final RenderBox widgetRenderBox =
-        selectedKey.currentContext!.findRenderObject() as RenderBox;
-    final widgetPosition = widgetRenderBox.localToGlobal(Offset.zero);
-    final widthSize = widgetRenderBox.size;
+    // final RenderBox widgetRenderBox =
+    //     selectedKey.currentContext!.findRenderObject() as RenderBox;
+    // final widgetPosition = widgetRenderBox.localToGlobal(Offset.zero);
+    // final widthSize = widgetRenderBox.size;
   }
 
   ScrollController scrollController = ScrollController();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yolo/utils/app_colors.dart';
-import 'package:yolo/utils/common_widgets.dart';
+import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
 class ViewDealsDetailScreen extends StatefulWidget {

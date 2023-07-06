@@ -1,14 +1,27 @@
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:yolo/providers/verify_referal_code_provider.dart';
 import 'package:yolo/utils/app_colors.dart';
-import 'package:yolo/utils/common_widgets.dart';
+import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
+
+final verifyReferalCodeProvider = StateProvider.autoDispose((ref) async {
+  http.Response response = await NetworkUtils.request(
+      endpoint: '/api/v1/referral/verify',
+      networkRequestType: NetworkRequestType.post,
+      baseUrltype: BaseUrl.yolo2,
+      body: requestBody,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': Hive.box('db').get('accessKey') ?? ''
+      },
+      protocolType: SSL.http);
+  return response;
+});
 
 class AddReferralScreen extends ConsumerStatefulWidget {
   const AddReferralScreen({super.key});

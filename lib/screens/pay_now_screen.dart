@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yolo/screens/scan_and_pay/mpin_for_pay_screen.dart';
-import 'package:yolo/screens/scan_and_pay/scan_and_pay_widgets/user_info_widget.dart';
+import 'package:yolo/screens/mpin_for_pay_screen.dart';
+import 'package:yolo/screens/widgets/user_info_widget.dart';
 import 'package:yolo/utils/app_colors.dart';
-import 'package:yolo/utils/common_widgets.dart';
+import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
 class PayNowScreen extends StatefulWidget {

@@ -1,13 +1,31 @@
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:yolo/providers/mpin_reset_provider.dart';
 import 'package:yolo/utils/app_colors.dart';
-import 'package:yolo/utils/common_widgets.dart';
+import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
+
+final resetMpinProvider = StateProvider.autoDispose((ref) async {
+  http.Response response = await NetworkUtils.request(
+          endpoint: 'issuance/v1/cardholders/mpin/verify',
+          networkRequestType: NetworkRequestType.post,
+          baseUrltype: BaseUrl.user,
+          body: requestBody,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          protocolType: SSL.https)
+      .whenComplete(() =>
+          ref.read(resetMpinProviderStatusProvider.notifier).state = false);
+  return response;
+});
+
+final resetMpinProviderStatusProvider = StateProvider<bool>((ref) {
+  return false;
+});
 
 class ResetMpin extends ConsumerStatefulWidget {
   const ResetMpin({super.key});

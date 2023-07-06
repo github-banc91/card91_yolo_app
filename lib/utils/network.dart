@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-// Enum for the type of network request
 enum NetworkRequestType {
   get,
   post,
@@ -22,23 +21,20 @@ enum SSL {
 
 Map<String, dynamic> requestBody = {};
 
-// Utility class for making network requests
 class NetworkUtils {
   NetworkUtils._();
 
-  // Static function for making network requests
   static Future<http.Response> request({
     required String endpoint,
     required NetworkRequestType networkRequestType,
     required BaseUrl baseUrltype,
     required SSL protocolType,
-    Map<String, String>? headers,
+    required Map<String, String> headers,
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
   }) async {
     String baseUrl;
     Uri uri;
-    print(baseUrltype);
     switch (baseUrltype) {
       case BaseUrl.user:
         baseUrl = 'api-sandbox.card91.io';
@@ -66,27 +62,9 @@ class NetworkUtils {
     }
     switch (networkRequestType) {
       case NetworkRequestType.get:
-        print(baseUrl);
-        print(endpoint);
-        print(jsonEncode(body));
-        print(queryParameters);
-        print(headers);
-        print(uri);
-        final response = await http.get(
-          uri,
-          headers: {}..addAll(
-              headers ?? {},
-            ),
-        );
+        final response = await http.get(uri, headers: headers);
         return response;
       case NetworkRequestType.post:
-        print(baseUrl);
-        print(endpoint);
-        print(jsonEncode(body));
-        print(queryParameters);
-        print(headers);
-        print(uri);
-
         final response =
             await http.post(uri, headers: headers, body: jsonEncode(body));
         return response;

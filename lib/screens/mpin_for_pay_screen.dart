@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yolo/screens/scan_and_pay/payment_status_screen.dart';
+import 'package:yolo/screens/payment_status_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
-import 'package:yolo/utils/common_widgets.dart';
+import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
 class MPINForPayScreen extends StatefulWidget {

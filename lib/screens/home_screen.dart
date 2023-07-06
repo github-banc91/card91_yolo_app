@@ -1,9 +1,24 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yolo/utils/app_colors.dart';
-import 'package:yolo/utils/common_widgets.dart';
+import 'package:yolo/screens/widgets/common_widgets.dart';
+import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
+import 'package:http/http.dart' as http;
+
+final getSponsorsListProvider = FutureProvider.autoDispose((ref) async {
+  http.Response response = await NetworkUtils.request(
+      endpoint: '/api/v1/sponsors/',
+      networkRequestType: NetworkRequestType.get,
+      baseUrltype: BaseUrl.yolo1,
+      protocolType: SSL.http,
+      headers: {'Authorization': Hive.box('db').get('accessKey') ?? ''});
+  Map<String, dynamic> result = jsonDecode(response.body);
+  return result;
+});
 
 class HomeScreen extends StatefulWidget {
   static const String route = 'HomeScreen';

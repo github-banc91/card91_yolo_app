@@ -1,16 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:yolo/screens/refer/refer_a_user_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
-class TopCard extends StatelessWidget {
-  const TopCard({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  static const String route = 'HomeScreen';
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Scaffold(
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 20,
+            ),
+            child: Column(
+              children: [
+                _topCard(),
+                getSize(height: 20),
+                _homeOptionsWidget(),
+                getSize(height: 15),
+                _earnCoinAndOrderPhyCard(),
+                getSize(height: 20),
+                _recommendationWidget(),
+                getSize(height: 20),
+                _dealsOfDay(),
+                getSize(height: 20),
+                _sponsoredWidget(),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _topCard() {
     return Container(
       width: MediaQuery.of(context).size.width,
       margin: const EdgeInsets.only(
@@ -111,7 +151,7 @@ class TopCard extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          commonTile(
+                                          _commonTile(
                                             context,
                                             'Refer',
                                             'assets/icons/refer icon.svg',
@@ -123,31 +163,31 @@ class TopCard extends StatelessWidget {
                                               );
                                             },
                                           ),
-                                          commonTile(
+                                          _commonTile(
                                             context,
                                             'My qr code',
                                             'assets/icons/my qr code.svg',
                                             null,
                                           ),
-                                          commonTile(
+                                          _commonTile(
                                             context,
                                             'Yolo wallet',
                                             'assets/icons/yolo wallet.svg',
                                             null,
                                           ),
-                                          commonTile(
+                                          _commonTile(
                                             context,
                                             'Transaction history',
                                             'assets/icons/trans his.svg',
                                             null,
                                           ),
-                                          commonTile(
+                                          _commonTile(
                                             context,
                                             'App settings',
                                             'assets/icons/setting.svg',
                                             null,
                                           ),
-                                          commonTile(
+                                          _commonTile(
                                             context,
                                             'Logout',
                                             'assets/icons/logout.svg',
@@ -233,7 +273,258 @@ class TopCard extends StatelessWidget {
     );
   }
 
-  Widget commonTile(context, title, icon, tap) {
+  Widget _homeOptionsWidget() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _commonContainer(
+          'Scan & Pay',
+          'assets/icons/scan and pay.svg',
+          () {
+            Navigator.pushNamed(context, 'ScanAndPay');
+          },
+        ),
+        getSize(width: 20),
+        _commonContainer('My Qr', 'assets/icons/my qr.svg', () {
+          // ref.read(cardHolderDataProvider);
+        }),
+        getSize(width: 20),
+        _commonContainer('Transaction', 'assets/icons/transfer his.svg', () {
+          Navigator.pushNamed(context, 'ScanNpay');
+        }),
+        getSize(width: 20),
+        _commonContainer('Refer', 'assets/icons/refer.svg', () {}),
+      ],
+    );
+  }
+
+  Widget _earnCoinAndOrderPhyCard() {
+    return Column(
+      children: [
+        Stack(
+          alignment: Alignment.topRight,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.only(top: 30, right: 20),
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                gradient: const LinearGradient(
+                  colors: [
+                    Color(0xff172549),
+                    Color(0xff000000),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Earn Yolo Coins Now',
+                    style: Poppins.bold(AppColors.whiteColor).s14,
+                  ),
+                  getSize(height: 10),
+                  Text(
+                    'Activate',
+                    style: Poppins.regular(AppColors.whiteColor).s14,
+                  ),
+                ],
+              ),
+            ),
+            Image.asset(
+              'assets/images/earn coin.png',
+            ),
+          ],
+        ),
+        Container(
+          padding: const EdgeInsets.all(25),
+          margin: const EdgeInsets.only(top: 15),
+          width: MediaQuery.of(context).size.width * 0.65,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: const Color(0xff1B1B1B),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SvgPicture.asset('assets/icons/phy card.svg'),
+              getSize(width: 10),
+              Text(
+                'Order your Physical Card',
+                style: Poppins.bold(AppColors.whiteColor).s14,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _recommendationWidget() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Recommendation',
+          style: Poppins.bold(AppColors.blackFont).s20,
+        ),
+        getSize(height: 20),
+        Container(
+          padding: const EdgeInsets.all(25),
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            gradient: const LinearGradient(
+              colors: [
+                Color(0xff2D4C9D),
+                Color(0xff180909),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Activate your min KYC To start \nusing YOLO',
+                style: Poppins.bold(AppColors.whiteColor).s15,
+              ),
+              getSize(height: 40),
+              Container(
+                padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                decoration: BoxDecoration(
+                  color: AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Text(
+                  'Activate now',
+                  style: Poppins.bold(AppColors.blackFont).s16,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _dealsOfDay() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              'AllDealsScreen',
+            );
+          },
+          child: Text(
+            'Deals of the day',
+            style: Poppins.bold(AppColors.blackFont).s20,
+          ),
+        ),
+        // getSize(height: 20),
+        Image.asset('assets/images/nyka deal.png'),
+        SizedBox(
+          height: 150,
+          width: MediaQuery.of(context).size.width,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 8,
+            shrinkWrap: true,
+            itemBuilder: (ctx, i) {
+              return Image.asset(
+                'assets/images/deal 50%.png',
+                width: 160,
+                height: 140,
+                fit: BoxFit.fill,
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _sponsoredWidget() {
+    return Container();
+    // final sponsorsWatch = ref.watch(getSponsorsListProvider);
+    // return sponsorsWatch.when(
+    //     data: (data) {
+    //       return SizedBox(
+    //         width: double.infinity,
+    //         child: Column(
+    //           crossAxisAlignment: CrossAxisAlignment.start,
+    //           mainAxisAlignment: MainAxisAlignment.start,
+    //           children: [
+    //             Text(
+    //               'Sponsored',
+    //               style: Poppins.bold(AppColors.blackFont).s20,
+    //             ),
+    //             getSize(height: 20),
+    //             Wrap(
+    //               runSpacing: 5,
+    //               spacing: 10,
+    //               children: [
+    //                 for (int i = 0;
+    //                     i < List.from(data['allSponsors']).length;
+    //                     i++)
+    //                   Card(
+    //                     child: Padding(
+    //                       padding: const EdgeInsets.all(8.0),
+    //                       child: Column(
+    //                         children: [
+    //                           Image.network(
+    //                             data['allSponsors'][i]['display_img_url'] ?? '',
+    //                             height: 100,
+    //                             width: 80,
+    //                             errorBuilder: (a, s, _) {
+    //                               return Icon(
+    //                                 Icons.error,
+    //                                 color: AppColors.redError,
+    //                               );
+    //                             },
+    //                           ),
+    //                           Text(
+    //                             data['allSponsors'][i]['title'] ?? '',
+    //                             style: Poppins.bold(AppColors.blackFont).s14,
+    //                           ),
+    //                         ],
+    //                       ),
+    //                     ),
+    //                   ),
+    //               ],
+    //             ),
+    //           ],
+    //         ),
+    //       );
+    //     },
+    //     error: (error, stackTrace) {
+    //       String message = '';
+    //       // if (error is ErrorMessage) {
+    //       //   message = error.message;
+    //       // }
+
+    //       return Center(
+    //         child: Text(
+    //           message,
+    //           style: const TextStyle(color: Colors.white, fontSize: 16),
+    //         ),
+    //       );
+    //     },
+    //     loading: () => const Center(
+    //             child: CircularProgressIndicator(
+    //           color: Color(0xFFfa9b6d),
+    //         )));
+  }
+
+  Widget _commonTile(context, title, icon, tap) {
     return ListTile(
       contentPadding: const EdgeInsets.only(top: 20),
       trailing: Icon(
@@ -251,14 +542,42 @@ class TopCard extends StatelessWidget {
     );
   }
 
+  Widget _commonContainer(title, image, onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: AppColors.greyCard,
+                width: 3,
+              ),
+              shape: BoxShape.circle,
+              color: AppColors.greyTextFormField,
+            ),
+            padding: const EdgeInsets.all(12),
+            child: SvgPicture.asset(
+              image,
+              height: 35,
+            ),
+          ),
+          getSize(height: 10),
+          Text(
+            title,
+            style: Poppins.regular(AppColors.blackFont).s12,
+          ),
+        ],
+      ),
+    );
+  }
+
   void clearCreds(BuildContext context) async {
     Navigator.pushNamedAndRemoveUntil(
       context,
       'SignInMobileScreen',
       (route) => false,
     );
-    await Hive.box('db').delete('phoneNumber');
-    await Hive.box('db').delete('name');
-    await Hive.box('db').delete('mobile');
+    await Hive.deleteBoxFromDisk('db');
   }
 }

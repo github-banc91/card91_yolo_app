@@ -198,10 +198,6 @@ meta
 2.12
 file:///Users/avinash/.pub-cache/hosted/pub.dev/meta-1.9.1/
 file:///Users/avinash/.pub-cache/hosted/pub.dev/meta-1.9.1/lib/
-nested
-2.12
-file:///Users/avinash/.pub-cache/hosted/pub.dev/nested-1.0.0/
-file:///Users/avinash/.pub-cache/hosted/pub.dev/nested-1.0.0/lib/
 open_file_safe
 2.12
 file:///Users/avinash/.pub-cache/hosted/pub.dev/open_file_safe-3.2.3/
@@ -266,10 +262,6 @@ process
 2.14
 file:///Users/avinash/.pub-cache/hosted/pub.dev/process-4.2.4/
 file:///Users/avinash/.pub-cache/hosted/pub.dev/process-4.2.4/lib/
-provider
-2.12
-file:///Users/avinash/.pub-cache/hosted/pub.dev/provider-6.0.5/
-file:///Users/avinash/.pub-cache/hosted/pub.dev/provider-6.0.5/lib/
 qr
 2.16
 file:///Users/avinash/.pub-cache/hosted/pub.dev/qr-3.0.1/
@@ -278,6 +270,10 @@ qr_code_scanner
 2.17
 file:///Users/avinash/.pub-cache/hosted/pub.dev/qr_code_scanner-1.0.1/
 file:///Users/avinash/.pub-cache/hosted/pub.dev/qr_code_scanner-1.0.1/lib/
+qr_flutter
+2.19
+file:///Users/avinash/.pub-cache/hosted/pub.dev/qr_flutter-4.1.0/
+file:///Users/avinash/.pub-cache/hosted/pub.dev/qr_flutter-4.1.0/lib/
 riverpod
 2.17
 file:///Users/avinash/.pub-cache/hosted/pub.dev/riverpod-2.3.6/

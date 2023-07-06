@@ -5,7 +5,7 @@ import 'package:yolo/providers/cardholder_data_provider.dart';
 import 'package:yolo/providers/favourite_contacts_provider.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/constants.dart';
-import 'package:yolo/utils/network_utils.dart';
+import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
 
 class ScanNpay extends ConsumerStatefulWidget {
@@ -128,9 +128,9 @@ class _ScanNpayState extends ConsumerState<ScanNpay>
                             contactsWatch[index]['cardHolderName'] ?? 'No name',
                             style: Poppins.semiBold(AppColors.blackFont).s14,
                           ),
-                          trailing: const IconButton(
-                            onPressed: null,
-                            icon: Icon(Icons.star_border_outlined),
+                          trailing: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.star_border_outlined),
                           ),
                         );
                       },

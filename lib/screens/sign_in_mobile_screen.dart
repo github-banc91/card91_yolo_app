@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yolo/providers/access_key_provider.dart';
 import 'package:yolo/providers/mobile_login_provider.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/common_card_view.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/login_with_phone.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/logo_widget.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/welcome_widget.dart';
+import 'package:yolo/screens/widgets/common_card_view.dart';
+
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
-import 'package:yolo/utils/network_utils.dart';
+import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
 
 class SignInMobileScreen extends ConsumerStatefulWidget {
@@ -26,6 +24,29 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
     ref.read(accessKeyProvider);
   }
 
+  void _signIn() {
+    if (phoneNumberController.text.isNotEmpty) {
+      ref.read(mobileLoginStatusProvider.notifier).state = true;
+      requestBody = {'mobile_number': "91${phoneNumberController.text}"};
+      ref.read(mobileloginProvider).then((value) {
+        if (value['mpinExists'] == true) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            'SignInMpinFingerprintScreen',
+            (Route<dynamic> route) => true,
+          );
+        } else if (value['message'] == "CardHolder not found") {
+          Navigator.pushNamed(context, 'OnBoarding');
+        } else {
+          showToast(value['message'] ?? value['error'], AppColors.redError);
+        }
+      });
+    } else {
+      showToast(
+          'please enter your registered mobile number', AppColors.redError);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final mobileWatch = ref.watch(mobileLoginStatusProvider);
@@ -39,11 +60,22 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
             child: Column(
               children: [
                 getSize(height: 15),
-                const LogoWidget(),
+                Text(
+                  'YOLO',
+                  style: RedHat.extraBold().s24,
+                ),
                 getSize(height: 50),
-                const WelcomeWidget(),
+                Text(
+                  'Welcome back',
+                  style: RedHat.bold(AppColors.appTheme).s32.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                ),
                 getSize(height: 25),
-                const LogInWithPhoneNumber(),
+                Text(
+                  'Login with Phone Number',
+                  style: RedHat.regular().s20,
+                ),
                 getSize(height: 45),
                 Padding(
                   padding: const EdgeInsets.only(left: 30.0),
@@ -75,44 +107,11 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
                     : ElevatedButton(
                         style: const ButtonStyle(),
                         onPressed: () {
-                          if (phoneNumberController.text.isNotEmpty) {
-                            ref.read(mobileLoginStatusProvider.notifier).state =
-                                true;
-
-                            requestBody = {
-                              'mobile_number': "91${phoneNumberController.text}"
-                            };
-                            ref.read(mobileloginProvider).then((value) {
-                              print(
-                                  " mobile_number 91${phoneNumberController.text}");
-                              print(
-                                  "value['mpinExists'] ${value['mpinExists']}");
-                              if (value['mpinExists'] == true) {
-                                Navigator.pushNamedAndRemoveUntil(
-                                  context,
-                                  'SignInMpinFingerprintScreen',
-                                  (Route<dynamic> route) => true,
-                                );
-                              } else if (value['message'] ==
-                                  "CardHolder not found") {
-                                Navigator.pushNamed(context, 'OnBoarding');
-                              } else {
-                                showToast(value['message'], AppColors.redError);
-                              }
-                            });
-                          } else {
-                            showToast(
-                                'please enter your registered mobile number',
-                                AppColors.redError);
-                          }
+                          _signIn();
                         },
                         child: Container(
                           height: 50,
                           width: size(context).width * 0.65,
-                          // decoration: BoxDecoration(
-                          //   borderRadius: BorderRadius.circular(80),
-                          //   color: AppColors.blackFont,
-                          // ),
                           padding: const EdgeInsets.all(5),
                           alignment: Alignment.center,
                           child: Text(
@@ -121,16 +120,6 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
                           ),
                         ),
                       ),
-                // getSize(height: 20),
-                // InkWell(
-                //   onTap: () {
-                //     //print("hello moto");
-                //   },
-                //   child: const SizedBox(
-                //     height: 40,
-                //     child: FingerPrintLoginOption(),
-                //   ),
-                // ),
                 getSize(height: 20),
               ],
             ),

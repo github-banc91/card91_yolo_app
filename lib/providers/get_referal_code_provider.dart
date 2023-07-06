@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:yolo/utils/network_utils.dart';
+import 'package:yolo/utils/network.dart';
 
 final getReferalCodeProvider = FutureProvider.autoDispose((ref) async {
   http.Response response = await NetworkUtils.request(

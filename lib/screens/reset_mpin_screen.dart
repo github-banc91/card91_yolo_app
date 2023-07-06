@@ -6,7 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yolo/providers/mpin_reset_provider.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
-import 'package:yolo/utils/network_utils.dart';
+import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
 
 class ResetMpin extends ConsumerStatefulWidget {

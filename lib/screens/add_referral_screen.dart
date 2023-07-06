@@ -7,7 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yolo/providers/verify_referal_code_provider.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
-import 'package:yolo/utils/network_utils.dart';
+import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
 
 class AddReferralScreen extends ConsumerStatefulWidget {

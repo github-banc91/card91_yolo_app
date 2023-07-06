@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:yolo/utils/network_utils.dart';
+import 'package:yolo/utils/network.dart';
 
 final verifyReferalCodeProvider = StateProvider.autoDispose((ref) async {
   print("${Hive.box('db').get('accessKey')}");

@@ -6,13 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:yolo/data/remote/model/card_holder_data_model.dart';
 import 'package:yolo/providers/cardholder_data_provider.dart';
 import 'package:yolo/screens/scan_and_pay/user_info_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
 import 'package:yolo/utils/constants.dart';
-import 'package:yolo/utils/network_utils.dart';
+import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
 
 class ScanAndPay extends ConsumerStatefulWidget {

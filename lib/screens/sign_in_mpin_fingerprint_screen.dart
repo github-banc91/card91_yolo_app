@@ -4,18 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:yolo/providers/mpin_login_provider.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/common_card_view.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/fingerprint_login_option.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/forgot_mpin_widget.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/login_mpin_text.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/logo_widget.dart';
-import 'package:yolo/screens/authentication/sign_in/sign_in_widget/welcome_widget.dart';
+import 'package:yolo/screens/widgets/common_card_view.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
-import 'package:yolo/utils/network_utils.dart';
+import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
 
 class SignInMpinFingerprintScreen extends ConsumerStatefulWidget {
@@ -153,9 +149,17 @@ class _SignInMpinFingerprintScreenState
             child: Column(
               children: [
                 getSize(height: 15),
-                const LogoWidget(),
+                Text(
+                  'YOLO',
+                  style: RedHat.extraBold().s24,
+                ),
                 getSize(height: 40),
-                const WelcomeWidget(),
+                Text(
+                  'Welcome back',
+                  style: RedHat.bold(AppColors.appTheme).s32.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                ),
                 Hive.box('db').get('name') != null
                     ? getSize(height: 20)
                     : const SizedBox.shrink(),
@@ -164,7 +168,12 @@ class _SignInMpinFingerprintScreenState
                   style: Poppins.medium().s24,
                 ),
                 getSize(height: 25),
-                const LoginWithMpin(),
+                Hive.box('db').get('mobile') != null
+                    ? Text(
+                        'Login with ${Hive.box('db').get('mobile') ?? ''}',
+                        style: RedHat.regular().s20,
+                      )
+                    : const SizedBox.shrink(),
                 getSize(height: 25),
                 TextFormField(
                   controller: mpinController,
@@ -185,7 +194,13 @@ class _SignInMpinFingerprintScreenState
                   keyboardType: TextInputType.number,
                 ),
                 getSize(height: 15),
-                const ForgotMPINWidget(),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Forgot MPIN?',
+                    style: Poppins.regular().s16,
+                  ),
+                ),
                 getSize(height: 25),
                 mpinWatch
                     ? Center(
@@ -226,9 +241,22 @@ class _SignInMpinFingerprintScreenState
                       showToast('No biometrics available', AppColors.redError);
                     }
                   },
-                  child: const SizedBox(
+                  child: SizedBox(
                     height: 40,
-                    child: FingerPrintLoginOption(),
+                    child: Container(
+                      height: 55,
+                      width: size(context).width * 0.4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                          color: AppColors.blackFont,
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(5),
+                      child: SvgPicture.asset(
+                        'assets/icons/fingerprint.svg',
+                      ),
+                    ),
                   ),
                 ),
                 getSize(height: 20),

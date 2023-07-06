@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:yolo/screens/authentication/auth_view_model.dart';
 import 'package:yolo/screens/scan_and_pay/payment_status_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/utils/common_widgets.dart';
@@ -73,7 +71,6 @@ class _MPINForPayScreenState extends State<MPINForPayScreen> {
           child: TextFormField(
             keyboardType: TextInputType.number,
             style: Poppins.semiBold().s20,
-            controller: context.read<AuthViewModel>().pin1,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(left: 20, top: 5),
               border: InputBorder.none,
@@ -111,7 +108,6 @@ class _MPINForPayScreenState extends State<MPINForPayScreen> {
           child: TextFormField(
             keyboardType: TextInputType.number,
             style: Poppins.semiBold().s20,
-            controller: context.read<AuthViewModel>().pin2,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(left: 20, top: 5),
               border: InputBorder.none,
@@ -149,7 +145,6 @@ class _MPINForPayScreenState extends State<MPINForPayScreen> {
           child: TextFormField(
             keyboardType: TextInputType.number,
             style: Poppins.semiBold().s20,
-            controller: context.read<AuthViewModel>().pin3,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(left: 20, top: 5),
               border: InputBorder.none,
@@ -187,7 +182,6 @@ class _MPINForPayScreenState extends State<MPINForPayScreen> {
           child: TextFormField(
             keyboardType: TextInputType.number,
             style: Poppins.semiBold().s20,
-            controller: context.read<AuthViewModel>().pin4,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(left: 20, top: 5),
               border: InputBorder.none,
@@ -225,7 +219,6 @@ class _MPINForPayScreenState extends State<MPINForPayScreen> {
           child: TextFormField(
             keyboardType: TextInputType.number,
             style: Poppins.semiBold().s20,
-            controller: context.read<AuthViewModel>().pin5,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(left: 20, top: 5),
               border: InputBorder.none,

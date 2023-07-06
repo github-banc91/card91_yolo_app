@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:yolo/providers/get_sponsors_list_provider.dart';
-import 'package:yolo/screens/home/home_screen.dart';
+import 'package:yolo/screens/home_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 
 class DashboardScreen extends ConsumerStatefulWidget {

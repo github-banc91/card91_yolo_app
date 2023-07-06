@@ -326,12 +326,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "nested",
-      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dev/nested-1.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "open_file_safe",
       "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dev/open_file_safe-3.2.3",
       "packageUri": "lib/",
@@ -428,12 +422,6 @@
       "languageVersion": "2.14"
     },
     {
-      "name": "provider",
-      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dev/provider-6.0.5",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "qr",
       "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dev/qr-3.0.1",
       "packageUri": "lib/",
@@ -444,6 +432,12 @@
       "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dev/qr_code_scanner-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "qr_flutter",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dev/qr_flutter-4.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "riverpod",
@@ -620,7 +614,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-07-05T10:47:53.639802Z",
+  "generated": "2023-07-06T08:40:32.949031Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }

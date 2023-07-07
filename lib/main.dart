@@ -7,10 +7,12 @@ import 'package:yolo/screens/dashboard_screen.dart';
 import 'package:yolo/screens/all_deals_screen.dart';
 import 'package:yolo/screens/on_boarding.dart';
 import 'package:yolo/screens/on_boarding_kyc.dart';
+import 'package:yolo/screens/qr_screen.dart';
 import 'package:yolo/screens/refer_a_user_screen.dart';
 import 'package:yolo/screens/reset_mpin_screen.dart';
 import 'package:yolo/screens/scan_and_pay.dart';
 import 'package:yolo/screens/scan_n_pay.dart';
+import 'package:yolo/screens/scan_screen.dart';
 import 'package:yolo/screens/sign_in_mobile_screen.dart';
 import 'package:yolo/screens/sign_in_mpin_fingerprint_screen.dart';
 import 'package:yolo/utils/network.dart';
@@ -66,6 +68,8 @@ class _MyAppState extends ConsumerState<MyApp> {
         'ResetMpin': (context) => const ResetMpin(),
         'AddReferralScreen': (context) => const AddReferralScreen(),
         'ScanNpay': (context) => const ScanNpay(),
+        'ScanScreen': (context) => const ScanScreen(),
+        'QrScreen': (context) => const QrScreen(),
       },
     );
   }

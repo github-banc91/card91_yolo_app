@@ -182,7 +182,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                             context,
                                             'My qr code',
                                             'assets/icons/my qr code.svg',
-                                            null,
+                                            () {
+                                              Navigator.pushNamed(
+                                                context,
+                                                'QrScreen',
+                                              );
+                                            },
                                           ),
                                           _commonTile(
                                             context,
@@ -296,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
           'Scan & Pay',
           'assets/icons/scan and pay.svg',
           () {
-            Navigator.pushNamed(context, 'ScanAndPay');
+            Navigator.pushNamed(context, 'ScanScreen');
           },
         ),
         getSize(width: 20),

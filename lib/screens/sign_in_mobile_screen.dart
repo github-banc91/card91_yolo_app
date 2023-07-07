@@ -9,44 +9,6 @@ import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
 import 'package:http/http.dart' as http;
 
-final mobileloginProvider = StateProvider.autoDispose((ref) async {
-  http.Response response = await NetworkUtils.request(
-          endpoint:
-              '/issuance/v1/cardholders/${requestBody['mobile_number']}/mpin/status',
-          networkRequestType: NetworkRequestType.get,
-          baseUrltype: BaseUrl.user,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          protocolType: SSL.https)
-      .whenComplete(
-          () => ref.read(mobileLoginStatusProvider.notifier).state = false);
-  Map<String, dynamic> result = jsonDecode(response.body);
-  await Hive.box('db').put('phoneNumber', "${requestBody['mobile_number']}");
-  return result;
-});
-
-final mobileLoginStatusProvider = StateProvider<bool>((ref) {
-  return false;
-});
-
-final accessKeyProvider = StateProvider.autoDispose((ref) async {
-  http.Response response = await NetworkUtils.request(
-      endpoint: '/api/v1/vendor/login',
-      networkRequestType: NetworkRequestType.post,
-      baseUrltype: BaseUrl.yolo,
-      body: requestBody,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      protocolType: SSL.http);
-
-  Map<String, dynamic> result = jsonDecode(response.body);
-  if (response.statusCode == 200) {
-    await Hive.box('db').put('accessKey', result['accessKey']);
-  }
-});
-
 class SignInMobileScreen extends ConsumerStatefulWidget {
   const SignInMobileScreen({super.key});
   @override
@@ -171,3 +133,41 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
     );
   }
 }
+
+final mobileloginProvider = StateProvider.autoDispose((ref) async {
+  http.Response response = await NetworkUtils.request(
+          endpoint:
+              '/issuance/v1/cardholders/${requestBody['mobile_number']}/mpin/status',
+          networkRequestType: NetworkRequestType.get,
+          baseUrltype: BaseUrl.user,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          protocolType: SSL.https)
+      .whenComplete(
+          () => ref.read(mobileLoginStatusProvider.notifier).state = false);
+  Map<String, dynamic> result = jsonDecode(response.body);
+  await Hive.box('db').put('phoneNumber', "${requestBody['mobile_number']}");
+  return result;
+});
+
+final mobileLoginStatusProvider = StateProvider<bool>((ref) {
+  return false;
+});
+
+final accessKeyProvider = StateProvider.autoDispose((ref) async {
+  http.Response response = await NetworkUtils.request(
+      endpoint: '/api/v1/vendor/login',
+      networkRequestType: NetworkRequestType.post,
+      baseUrltype: BaseUrl.yolo,
+      body: requestBody,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      protocolType: SSL.http);
+
+  Map<String, dynamic> result = jsonDecode(response.body);
+  if (response.statusCode == 200) {
+    await Hive.box('db').put('accessKey', result['accessKey']);
+  }
+});

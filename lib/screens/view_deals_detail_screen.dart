@@ -4,7 +4,6 @@ import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
 class ViewDealsDetailScreen extends StatefulWidget {
-  static const String route = 'ViewDealsDetailScreen';
   const ViewDealsDetailScreen({Key? key}) : super(key: key);
 
   @override

@@ -6,7 +6,6 @@ import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
 class MPINForPayScreen extends StatefulWidget {
-  static const String route = 'MPINForPayScreen';
   const MPINForPayScreen({Key? key}) : super(key: key);
 
   @override
@@ -249,7 +248,7 @@ class _MPINForPayScreenState extends State<MPINForPayScreen> {
         alignment: Alignment.bottomRight,
         child: GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, PaymentStatusScreen.route);
+            Navigator.pushNamed(context, "PaymentStatusScreen");
           },
           child: Container(
             height: 35,

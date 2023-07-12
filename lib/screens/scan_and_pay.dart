@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:yolo/screens/user_info_screen.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
@@ -222,7 +221,7 @@ class _ScanAndPayState extends ConsumerState<ScanAndPay>
                         onTap: () {
                           Navigator.pushNamed(
                             context,
-                            UserInfoScreen.route,
+                            "UserInfoScreen",
                           );
                         },
                         child: Column(
@@ -424,7 +423,7 @@ class _ScanAndPayState extends ConsumerState<ScanAndPay>
       onTap: () {
         Navigator.pushNamed(
           context,
-          UserInfoScreen.route,
+          "UserInfoScreen",
         );
       },
       leading: const CircleAvatar(

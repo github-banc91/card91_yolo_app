@@ -39,7 +39,7 @@
     },
     {
       "name": "card91_plugin",
-      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dev/card91_plugin-0.0.10",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dev/card91_plugin-0.0.13",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -216,6 +216,12 @@
       "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dev/get-4.6.5",
       "packageUri": "lib/",
       "languageVersion": "2.15"
+    },
+    {
+      "name": "get_it",
+      "rootUri": "file:///Users/avinash/.pub-cache/hosted/pub.dev/get_it-7.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "google_nav_bar",
@@ -614,7 +620,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-07-07T10:46:51.171248Z",
+  "generated": "2023-07-10T13:54:59.415789Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }

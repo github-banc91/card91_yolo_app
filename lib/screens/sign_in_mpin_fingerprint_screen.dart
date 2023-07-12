@@ -6,38 +6,14 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:yolo/main.dart';
+import 'package:yolo/models/customer_model.dart';
 import 'package:yolo/screens/widgets/common_card_view.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
 import 'package:http/http.dart' as http;
-
-final mpinloginProvider = StateProvider.autoDispose((ref) async {
-  http.Response response = await NetworkUtils.request(
-          endpoint: 'issuance/v1/cardholders/login/mpin',
-          networkRequestType: NetworkRequestType.post,
-          baseUrltype: BaseUrl.user,
-          body: requestBody,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          protocolType: SSL.https)
-      .whenComplete(
-          () => ref.read(mpinLoginStatusProvider.notifier).state = false);
-  Map<String, dynamic> result = jsonDecode(response.body);
-  if (response.statusCode == 200) {
-    await Hive.box('db').put('name', result['customer']['name']);
-    await Hive.box('db').put('mobile', result['customer']['mobile']);
-    await Hive.box('db').put('cardId', result['cards'][0]['id']);
-    await Hive.box('db').put('jwt', response.headers['jwt_token']);
-  }
-  return response;
-});
-
-final mpinLoginStatusProvider = StateProvider<bool>((ref) {
-  return false;
-});
 
 class SignInMpinFingerprintScreen extends ConsumerStatefulWidget {
   const SignInMpinFingerprintScreen({super.key});
@@ -297,3 +273,33 @@ class _SignInMpinFingerprintScreenState
     );
   }
 }
+
+final mpinloginProvider = StateProvider.autoDispose((ref) async {
+  http.Response response = await NetworkUtils.request(
+          endpoint: 'issuance/v1/cardholders/login/mpin',
+          networkRequestType: NetworkRequestType.post,
+          baseUrltype: BaseUrl.user,
+          body: requestBody,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          protocolType: SSL.https)
+      .whenComplete(
+          () => ref.read(mpinLoginStatusProvider.notifier).state = false);
+
+  if (response.statusCode == 200) {
+    Map<String, dynamic> result = jsonDecode(response.body);
+    locator.registerSingleton<Customer>(
+      Customer.fromJson(result),
+    );
+    await Hive.box('db').put('name', result['customer']['name']);
+    await Hive.box('db').put('mobile', result['customer']['mobile']);
+    await Hive.box('db').put('cardId', result['cards'][0]['id']);
+    await Hive.box('db').put('jwt', response.headers['jwt_token']);
+  }
+  return response;
+});
+
+final mpinLoginStatusProvider = StateProvider<bool>((ref) {
+  return false;
+});

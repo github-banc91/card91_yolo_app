@@ -1,12 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:yolo/screens/pay_now_screen.dart';
 import 'package:yolo/screens/widgets/user_info_widget.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
 class UserInfoScreen extends StatefulWidget {
-  static const String route = 'UserInfoScreen';
   const UserInfoScreen({Key? key}) : super(key: key);
 
   @override
@@ -26,9 +26,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> arguments =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       backgroundColor: AppColors.whiteBgColor,
-      bottomSheet: sendMoneyBtn(),
+      bottomSheet: sendMoneyBtn(arguments),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: AppColors.whiteBgColor,
@@ -49,7 +51,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
         child: Column(
           children: [
-            const UserInfoWidget(),
+            UserInfoWidget(
+              personInfo: arguments,
+            ),
             getSize(height: 50),
             Align(
               alignment: Alignment.centerLeft,
@@ -186,13 +190,13 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     );
   }
 
-  Widget sendMoneyBtn() {
+  Widget sendMoneyBtn(Map<String, dynamic> arguements) {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(
           context,
-          PayNowScreen.route,
-          arguments: amount.text,
+          "PayNowScreen",
+          arguments: arguements..addAll({'amount': amount.text}),
         );
       },
       child: Container(

@@ -9,19 +9,7 @@ import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
 import 'package:http/http.dart' as http;
 
-final getSponsorsListProvider = FutureProvider.autoDispose((ref) async {
-  http.Response response = await NetworkUtils.request(
-      endpoint: '/api/v1/sponsors/',
-      networkRequestType: NetworkRequestType.get,
-      baseUrltype: BaseUrl.yolo1,
-      protocolType: SSL.http,
-      headers: {'Authorization': Hive.box('db').get('accessKey') ?? ''});
-  Map<String, dynamic> result = jsonDecode(response.body);
-  return result;
-});
-
 class HomeScreen extends StatefulWidget {
-  static const String route = 'HomeScreen';
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -601,3 +589,14 @@ class _HomeScreenState extends State<HomeScreen> {
     await Hive.deleteBoxFromDisk('db');
   }
 }
+
+final getSponsorsListProvider = FutureProvider.autoDispose((ref) async {
+  http.Response response = await NetworkUtils.request(
+      endpoint: '/api/v1/sponsors/',
+      networkRequestType: NetworkRequestType.get,
+      baseUrltype: BaseUrl.yolo1,
+      protocolType: SSL.http,
+      headers: {'Authorization': Hive.box('db').get('accessKey') ?? ''});
+  Map<String, dynamic> result = jsonDecode(response.body);
+  return result;
+});

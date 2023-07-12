@@ -27,8 +27,9 @@ dependencies:
   hive_flutter: ^1.1.0
   flutter_secure_storage: ^8.0.0
   webview_flutter: ^3.0.4
-  card91_plugin: ^0.0.10
+  card91_plugin: ^0.0.13
   qr_flutter: ^4.1.0
+  get_it: ^7.6.0
 
 dev_dependencies:
   flutter_test:

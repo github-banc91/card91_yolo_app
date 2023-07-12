@@ -36,6 +36,7 @@ class _OnBoardingKYCState extends State<OnBoardingKYC> {
                 template: templateId,
                 mobile: mobile,
                 onDataResponse: (String dataResponse) {
+                  print("dataResponse - $dataResponse");
                   switch (dataResponse) {
                     case "C91_MIN_KYC_INITIALISED":
                       // Do something to indicate that library is initialized

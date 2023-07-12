@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yolo/screens/mpin_for_pay_screen.dart';
 import 'package:yolo/screens/widgets/user_info_widget.dart';
 import 'package:yolo/utils/app_colors.dart';
 import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
 class PayNowScreen extends StatefulWidget {
-  static const String route = 'PayNowScreen';
   const PayNowScreen({Key? key}) : super(key: key);
 
   @override
@@ -16,7 +14,8 @@ class PayNowScreen extends StatefulWidget {
 class _PayNowScreenState extends State<PayNowScreen> {
   @override
   Widget build(BuildContext context) {
-    final String amount = ModalRoute.of(context)!.settings.arguments as String;
+    final Map<String, dynamic> arguments =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       backgroundColor: AppColors.whiteBgColor,
       appBar: AppBar(
@@ -35,7 +34,7 @@ class _PayNowScreenState extends State<PayNowScreen> {
           style: Poppins.medium(AppColors.blackFont).s18,
         ),
       ),
-      bottomSheet: payBtn(amount),
+      bottomSheet: payBtn(arguments['amount']),
       body: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
@@ -43,7 +42,9 @@ class _PayNowScreenState extends State<PayNowScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const UserInfoWidget(),
+            UserInfoWidget(
+              personInfo: arguments,
+            ),
             getSize(height: 50),
             Text(
               'You are paying',
@@ -51,7 +52,7 @@ class _PayNowScreenState extends State<PayNowScreen> {
             ),
             getSize(height: 15),
             Text(
-              amount,
+              arguments['amount'],
               style: const TextStyle(
                 fontSize: 40,
                 fontFamily: 'Poppins-SemiBold',
@@ -146,7 +147,7 @@ class _PayNowScreenState extends State<PayNowScreen> {
                             onTap: () {
                               Navigator.pushNamed(
                                 context,
-                                MPINForPayScreen.route,
+                                "MPINForPayScreen",
                               );
                             },
                             child: Text(

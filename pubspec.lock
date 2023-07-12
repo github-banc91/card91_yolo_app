@@ -53,10 +53,10 @@ packages:
     dependency: "direct main"
     description:
       name: card91_plugin
-      sha256: "2f91c93ba7eadb8f5ce93fb0658c43e225b2d89e08fe4b01999113fbe6693b37"
+      sha256: d9bd6d1e3ae5bb004a346cbd80fc37127b0da3505fc6ade88e14e0ce3d963928
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.10"
+    version: "0.0.13"
   characters:
     dependency: transitive
     description:
@@ -277,6 +277,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.6.5"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      sha256: "529de303c739fca98cd7ece5fca500d8ff89649f1bb4b4e94fb20954abcd7468"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.6.0"
   google_nav_bar:
     dependency: "direct main"
     description:

@@ -4,8 +4,8 @@ import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
 class UserInfoWidget extends StatelessWidget {
-  const UserInfoWidget({Key? key}) : super(key: key);
-
+  const UserInfoWidget({Key? key, required this.personInfo}) : super(key: key);
+  final Map<String, dynamic> personInfo;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,12 +35,12 @@ class UserInfoWidget extends StatelessWidget {
         ),
         getSize(height: 15),
         Text(
-          'Elisa bsd',
+          personInfo['name'],
           style: Poppins.regular(AppColors.blackFont).s22,
         ),
         getSize(height: 15),
         Text(
-          'Acc No : 8u4t3u4i993940',
+          'Mob No : ${personInfo['mobileNo']}',
           style: Poppins.regular(const Color(0xffA5A5A5)).s18,
         ),
         getSize(height: 15),

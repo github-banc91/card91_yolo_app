@@ -9,20 +9,6 @@ import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
 
-final verifyReferalCodeProvider = StateProvider.autoDispose((ref) async {
-  http.Response response = await NetworkUtils.request(
-      endpoint: '/api/v1/referral/verify',
-      networkRequestType: NetworkRequestType.post,
-      baseUrltype: BaseUrl.yolo2,
-      body: requestBody,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': Hive.box('db').get('accessKey') ?? ''
-      },
-      protocolType: SSL.http);
-  return response;
-});
-
 class AddReferralScreen extends ConsumerStatefulWidget {
   const AddReferralScreen({super.key});
 
@@ -147,3 +133,17 @@ class _AddReferralScreenState extends ConsumerState<AddReferralScreen> {
         ),
       );
 }
+
+final verifyReferalCodeProvider = StateProvider.autoDispose((ref) async {
+  http.Response response = await NetworkUtils.request(
+      endpoint: '/api/v1/referral/verify',
+      networkRequestType: NetworkRequestType.post,
+      baseUrltype: BaseUrl.yolo2,
+      body: requestBody,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': Hive.box('db').get('accessKey') ?? ''
+      },
+      protocolType: SSL.http);
+  return response;
+});

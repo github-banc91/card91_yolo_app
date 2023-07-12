@@ -35,6 +35,9 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
             'SignInMpinFingerprintScreen',
             (Route<dynamic> route) => true,
           );
+        } else if (value['mpinExists'] == false) {
+          // Navigator.pushNamed(context, 'AddReferralScreen');
+          Navigator.pushNamed(context, 'OnBoardingKYC');
         } else if (value['message'] == "CardHolder not found") {
           Navigator.pushNamed(context, 'OnBoarding');
         } else {
@@ -50,85 +53,90 @@ class _SignInMobileScreenState extends ConsumerState<SignInMobileScreen> {
   @override
   Widget build(BuildContext context) {
     final mobileWatch = ref.watch(mobileLoginStatusProvider);
-    return Scaffold(
-      backgroundColor: AppColors.appTheme,
-      resizeToAvoidBottomInset: false,
-      body: Stack(
-        alignment: Alignment.bottomRight,
-        children: [
-          CommonCardView(
-            child: Column(
-              children: [
-                getSize(height: 15),
-                Text(
-                  'YOLO',
-                  style: RedHat.extraBold().s24,
-                ),
-                getSize(height: 50),
-                Text(
-                  'Welcome back',
-                  style: RedHat.bold(AppColors.appTheme).s32.copyWith(
-                        fontWeight: FontWeight.w800,
-                      ),
-                ),
-                getSize(height: 25),
-                Text(
-                  'Login with Phone Number',
-                  style: RedHat.regular().s20,
-                ),
-                getSize(height: 45),
-                Padding(
-                  padding: const EdgeInsets.only(left: 30.0),
-                  child: TextFormField(
-                    controller: phoneNumberController,
-                    keyboardType: TextInputType.number,
-                    style: Poppins.semiBold().s20,
-                    decoration: InputDecoration(
-                      hintText: '',
-                      hintStyle: Poppins.medium().s16,
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(
-                          '+91',
-                          style: Poppins.semiBold().s20,
-                        ),
-                      ),
-                    ),
-                    maxLength: 10,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.appTheme,
+        resizeToAvoidBottomInset: false,
+        body: Stack(
+          alignment: Alignment.bottomRight,
+          children: [
+            CommonCardView(
+              child: Column(
+                children: [
+                  getSize(height: 15),
+                  Text(
+                    'YOLO',
+                    style: RedHat.extraBold().s24,
                   ),
-                ),
-                getSize(height: 25),
-                mobileWatch
-                    ? Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.redError,
+                  getSize(height: 50),
+                  Text(
+                    'Welcome back',
+                    style: RedHat.bold(AppColors.appTheme).s32.copyWith(
+                          fontWeight: FontWeight.w800,
                         ),
-                      )
-                    : ElevatedButton(
-                        style: const ButtonStyle(),
-                        onPressed: () {
-                          _signIn();
-                        },
-                        child: Container(
-                          height: 50,
-                          width: size(context).width * 0.65,
-                          padding: const EdgeInsets.all(5),
-                          alignment: Alignment.center,
+                  ),
+                  getSize(height: 25),
+                  Text(
+                    'Login with Phone Number',
+                    style: RedHat.regular().s20,
+                  ),
+                  getSize(height: 45),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30.0),
+                    child: TextFormField(
+                      controller: phoneNumberController,
+                      keyboardType: TextInputType.number,
+                      style: Poppins.semiBold().s20,
+                      decoration: InputDecoration(
+                        hintText: '',
+                        hintStyle: Poppins.medium().s16,
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
                           child: Text(
-                            'LogIn',
-                            style: RedHat.bold(AppColors.whiteColor).s20,
+                            '+91',
+                            style: Poppins.semiBold().s20,
                           ),
                         ),
                       ),
-                getSize(height: 20),
-              ],
+                      maxLength: 10,
+                    ),
+                  ),
+                  getSize(height: 25),
+                  mobileWatch
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.redError,
+                          ),
+                        )
+                      : ElevatedButton(
+                          style: const ButtonStyle(),
+                          onPressed: () {
+                            _signIn();
+                          },
+                          child: Container(
+                            height: 50,
+                            width: size(context).width * 0.65,
+                            padding: const EdgeInsets.all(5),
+                            alignment: Alignment.center,
+                            child: Text(
+                              'LogIn',
+                              style: RedHat.bold(AppColors.whiteColor).s20,
+                            ),
+                          ),
+                        ),
+                  getSize(height: 20),
+                ],
+              ),
             ),
-          ),
-          Image.asset(
-            'assets/images/rocket.png',
-            fit: BoxFit.contain,
-          ),
-        ],
+            Image.asset(
+              'assets/images/rocket.png',
+              fit: BoxFit.contain,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -146,6 +154,7 @@ final mobileloginProvider = StateProvider.autoDispose((ref) async {
           protocolType: SSL.https)
       .whenComplete(
           () => ref.read(mobileLoginStatusProvider.notifier).state = false);
+  print("response.body - ${response.body}");
   Map<String, dynamic> result = jsonDecode(response.body);
   await Hive.box('db').put('phoneNumber', "${requestBody['mobile_number']}");
   return result;

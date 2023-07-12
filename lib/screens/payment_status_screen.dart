@@ -4,7 +4,6 @@ import 'package:yolo/screens/widgets/common_widgets.dart';
 import 'package:yolo/utils/typography.dart';
 
 class PaymentStatusScreen extends StatefulWidget {
-  static const String route = 'PaymentStatusScreen';
   const PaymentStatusScreen({Key? key}) : super(key: key);
 
   @override

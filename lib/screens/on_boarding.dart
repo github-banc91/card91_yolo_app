@@ -29,7 +29,6 @@ class _OnBoardingState extends State<OnBoarding> {
 
   @override
   void initState() {
-    print('Onboarding screen initialised $customFields');
     super.initState();
   }
 
@@ -54,7 +53,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   customFields: customFields,
                   card91controller: _controller,
                   onDataResponse: (String dataResponse) {
-                    print("data - $dataResponse");
+                    print("dataResponse - $dataResponse");
                     switch (dataResponse) {
                       case "C91_ISSUE_CARD_SCREEN_INITIALISED":
                         // Do something to indicate that Parameter is missing

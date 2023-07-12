@@ -7,25 +7,6 @@ import 'package:yolo/utils/network.dart';
 import 'package:yolo/utils/typography.dart';
 import 'package:http/http.dart' as http;
 
-final getAllDealsProvider = StateProvider.autoDispose((ref) async {
-  http.Response response = await NetworkUtils.request(
-          endpoint: 'deals/',
-          networkRequestType: NetworkRequestType.get,
-          baseUrltype: BaseUrl.yolo,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          protocolType: SSL.https)
-      .whenComplete(
-          () => ref.read(getAllDealsStatusProvider.notifier).state = false);
-  Map<String, dynamic> result = jsonDecode(response.body);
-  return result;
-});
-
-final getAllDealsStatusProvider = StateProvider<bool>((ref) {
-  return false;
-});
-
 class AllDealsScreen extends StatefulWidget {
   const AllDealsScreen({Key? key}) : super(key: key);
 
@@ -76,7 +57,7 @@ class _AllDealsScreenState extends State<AllDealsScreen> {
           onTap: () {
             Navigator.pushNamed(
               context,
-              ViewDealsDetailScreen.route,
+              "ViewDealsDetailScreen",
             );
           },
           child: Container(
@@ -124,3 +105,16 @@ class _AllDealsScreenState extends State<AllDealsScreen> {
     );
   }
 }
+
+final getAllDealsProvider = StateProvider.autoDispose((ref) async {
+  http.Response response = await NetworkUtils.request(
+      endpoint: 'deals/',
+      networkRequestType: NetworkRequestType.get,
+      baseUrltype: BaseUrl.yolo,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      protocolType: SSL.https);
+  Map<String, dynamic> result = jsonDecode(response.body);
+  return result;
+});
